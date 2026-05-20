@@ -12,12 +12,12 @@
 
 :root{
   --bg:#050505;
-  --card:#0a0a0a;
-  --green:#00ff88;
-  --green-soft:rgba(0,255,136,.08);
+  --card:#0b0b0b;
+  --accent:#00ff88;
+  --accent-soft:rgba(0,255,136,.08);
   --text:#ffffff;
   --muted:#9ca3af;
-  --border:#171717;
+  --border:#1a1a1a;
 }
 
 *{
@@ -25,6 +25,10 @@
   padding:0;
   box-sizing:border-box;
   scroll-behavior:smooth;
+}
+
+html{
+  scroll-padding-top:100px;
 }
 
 body{
@@ -43,12 +47,12 @@ body::before{
   inset:0;
 
   background:
-  linear-gradient(rgba(0,0,0,.95),rgba(0,0,0,.96)),
+  linear-gradient(rgba(0,0,0,.96),rgba(0,0,0,.97)),
   url('https://images.unsplash.com/photo-1510511459019-5dda7724fd87?auto=format&fit=crop&w=1920&q=80');
 
   background-size:cover;
   background-position:center;
-  opacity:.06;
+  opacity:.04;
   z-index:-3;
 }
 
@@ -59,7 +63,7 @@ body::after{
 
   background:
   radial-gradient(circle at top left,
-  rgba(0,255,136,.05),transparent 30%),
+  rgba(0,255,136,.04),transparent 30%),
 
   radial-gradient(circle at bottom right,
   rgba(0,255,136,.03),transparent 30%);
@@ -74,10 +78,10 @@ body::after{
 }
 
 ::-webkit-scrollbar-thumb{
-  background:var(--green);
+  background:var(--accent);
 }
 
-/* Minimal Loader */
+/* Loader */
 
 #loader{
   position:fixed;
@@ -89,7 +93,7 @@ body::after{
   justify-content:center;
   align-items:center;
 
-  transition:opacity .6s ease;
+  transition:opacity .5s ease;
 }
 
 .loader-content{
@@ -99,20 +103,23 @@ body::after{
   gap:18px;
 }
 
-.loader-logo{
+.loader-ring{
   width:42px;
   height:42px;
-  border:3px solid rgba(255,255,255,.08);
-  border-top:3px solid var(--green);
+
+  border:2px solid rgba(255,255,255,.08);
+  border-top:2px solid var(--accent);
+
   border-radius:50%;
 
   animation:spin 1s linear infinite;
 }
 
 .loader-content p{
-  color:#8b8b8b;
-  font-size:14px;
-  letter-spacing:1px;
+  color:#808080;
+  font-size:13px;
+  letter-spacing:2px;
+  text-transform:uppercase;
 }
 
 @keyframes spin{
@@ -137,14 +144,14 @@ header{
 }
 
 .navbar{
-  width:min(1200px,92%);
+  width:min(1180px,92%);
   margin:auto;
 
   display:flex;
   justify-content:space-between;
   align-items:center;
 
-  padding:22px 0;
+  padding:24px 0;
 }
 
 /* Logo */
@@ -155,56 +162,32 @@ header{
   gap:12px;
 }
 
-.hex{
-  width:18px;
-  height:18px;
-
-  background:var(--green);
-
-  clip-path:polygon(
-  25% 6.7%,
-  75% 6.7%,
-  100% 50%,
-  75% 93.3%,
-  25% 93.3%,
-  0% 50%
-  );
-
-  box-shadow:0 0 10px rgba(0,255,136,.18);
+.logo-box{
+  width:16px;
+  height:16px;
+  background:var(--accent);
+  border-radius:4px;
+  box-shadow:0 0 18px rgba(0,255,136,.2);
 }
 
-.dot{
-  width:8px;
-  height:8px;
-  border-radius:50%;
-  background:var(--green);
-
-  animation:pulse 2s infinite;
+.logo span{
+  font-size:15px;
+  font-weight:600;
+  letter-spacing:.5px;
 }
 
-@keyframes pulse{
-
-  0%,100%{
-    transform:scale(1);
-    opacity:1;
-  }
-
-  50%{
-    transform:scale(1.3);
-    opacity:.5;
-  }
-}
+/* Navigation */
 
 .nav-links{
   display:flex;
-  gap:35px;
+  gap:34px;
   list-style:none;
 }
 
 .nav-links a{
   text-decoration:none;
   color:#d1d5db;
-  font-size:15px;
+  font-size:14px;
   font-weight:500;
   position:relative;
   transition:.3s;
@@ -214,22 +197,34 @@ header{
   content:"";
   position:absolute;
   left:0;
-  bottom:-6px;
+  bottom:-8px;
 
   width:0%;
   height:1px;
 
-  background:var(--green);
+  background:var(--accent);
 
   transition:.3s;
 }
 
 .nav-links a:hover{
-  color:var(--green);
+  color:var(--accent);
 }
 
 .nav-links a:hover::after{
   width:100%;
+}
+
+/* Sections */
+
+section{
+  padding:110px 5%;
+  position:relative;
+}
+
+.container{
+  width:min(1180px,100%);
+  margin:auto;
 }
 
 /* Hero */
@@ -239,50 +234,49 @@ header{
 
   display:flex;
   align-items:center;
-  justify-content:center;
-
-  padding:120px 5%;
 }
 
 .hero-container{
-  width:min(1200px,100%);
+  width:min(1180px,100%);
 
   display:grid;
-  grid-template-columns:1.2fr .8fr;
+  grid-template-columns:1.15fr .85fr;
 
-  gap:70px;
+  gap:80px;
   align-items:center;
 }
 
 .badge{
   display:inline-flex;
   align-items:center;
-  gap:10px;
 
   padding:12px 20px;
 
   border-radius:999px;
 
-  background:var(--green-soft);
+  background:var(--accent-soft);
 
   border:1px solid rgba(0,255,136,.12);
 
-  color:var(--green);
+  color:var(--accent);
+
+  font-size:14px;
+  font-weight:600;
 
   margin-bottom:28px;
 }
 
 .hero h1{
-  font-size:58px;
-  line-height:1.1;
+  font-size:64px;
+  line-height:1.05;
   font-weight:800;
   letter-spacing:-2px;
 
-  margin-bottom:18px;
+  margin-bottom:20px;
 }
 
 .hero h1 span{
-  color:var(--green);
+  color:var(--accent);
 }
 
 .hero h2{
@@ -292,7 +286,7 @@ header{
 
   line-height:1.7;
 
-  margin-bottom:25px;
+  margin-bottom:28px;
 }
 
 .hero p{
@@ -300,25 +294,29 @@ header{
 
   font-size:16px;
   line-height:1.9;
+
+  max-width:720px;
 }
 
 .highlight{
-  color:var(--green);
+  color:var(--accent);
   font-weight:600;
 }
+
+/* Tags */
 
 .tags{
   display:flex;
   flex-wrap:wrap;
   gap:12px;
 
-  margin-top:28px;
+  margin-top:32px;
 }
 
 .tag{
   background:#0f0f0f;
 
-  border:1px solid rgba(0,255,136,.12);
+  border:1px solid rgba(255,255,255,.05);
 
   padding:12px 18px;
 
@@ -329,8 +327,10 @@ header{
   font-size:14px;
 }
 
+/* Buttons */
+
 .buttons{
-  margin-top:35px;
+  margin-top:38px;
 
   display:flex;
   gap:18px;
@@ -349,13 +349,13 @@ header{
 }
 
 .primary{
-  background:var(--green);
+  background:var(--accent);
   color:#000;
 }
 
 .secondary{
-  border:1px solid rgba(0,255,136,.15);
-  color:var(--green);
+  border:1px solid rgba(255,255,255,.08);
+  color:#fff;
 }
 
 .btn:hover{
@@ -370,73 +370,47 @@ header{
 
   border:1px solid var(--border);
 
-  border-radius:26px;
+  border-radius:24px;
 
-  padding:35px;
+  padding:38px;
 }
 
 .hero-card{
-  position:relative;
-  overflow:hidden;
-}
-
-.hero-card::before{
-  content:"";
-
-  position:absolute;
-  inset:0;
-
-  background:
-  linear-gradient(
-  135deg,
-  rgba(0,255,136,.05),
-  transparent 45%
-  );
-}
-
-.stat{
-  margin-bottom:24px;
-}
-
-.stat:last-child{
-  margin-bottom:0;
+  display:flex;
+  flex-direction:column;
+  gap:28px;
 }
 
 .stat p{
   color:#7a7a7a;
-  font-size:14px;
+  font-size:13px;
+  margin-bottom:8px;
+  text-transform:uppercase;
+  letter-spacing:1px;
 }
 
 .stat h3{
-  margin-top:8px;
   font-size:18px;
   line-height:1.6;
+  font-weight:600;
 }
 
-/* Sections */
-
-section{
-  padding:110px 5%;
-  animation:fadeUp .8s ease;
-}
-
-.container{
-  width:min(1200px,100%);
-  margin:auto;
-}
+/* Typography */
 
 .section-title{
-  font-size:42px;
-  margin-bottom:15px;
+  font-size:44px;
+  margin-bottom:14px;
+  letter-spacing:-1px;
 }
 
 .section-title span{
-  color:var(--green);
+  color:var(--accent);
 }
 
 .section-sub{
   color:var(--muted);
   margin-bottom:50px;
+  font-size:16px;
 }
 
 .about-text{
@@ -444,45 +418,73 @@ section{
   color:#c5c5c5;
 }
 
-/* Skills */
+p{
+  text-wrap:pretty;
+}
+
+/* Grid */
 
 .skills-grid{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-  gap:20px;
+  grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+  gap:24px;
+  align-items:stretch;
 }
 
+/* Cards */
+
 .skill-card{
-  background:#0a0a0a;
+  background:#0b0b0b;
 
-  border:1px solid #171717;
+  border:1px solid var(--border);
 
-  border-radius:22px;
+  border-radius:20px;
 
-  padding:28px;
+  padding:30px;
 
   transition:
   transform .25s ease,
   border-color .25s ease,
   background .25s ease;
+
+  display:flex;
+  flex-direction:column;
+
+  min-height:240px;
 }
 
 .skill-card:hover{
-  transform:translateY(-4px);
+  transform:translateY(-5px);
 
-  border-color:rgba(0,255,136,.18);
+  border-color:rgba(0,255,136,.25);
 
   background:#101010;
 }
 
 .skill-card h3{
-  color:var(--green);
-  margin-bottom:12px;
+  color:var(--text);
+
+  font-size:22px;
+  line-height:1.4;
+
+  margin-bottom:14px;
+
+  font-weight:700;
 }
 
 .skill-card p{
   line-height:1.8;
-  color:#c4c4c4;
+  color:#b6b6b6;
+  font-size:15px;
+}
+
+.project-date{
+  color:var(--accent);
+  font-size:13px;
+  font-weight:600;
+  letter-spacing:.5px;
+  margin-bottom:18px;
+  text-transform:uppercase;
 }
 
 /* Contact */
@@ -493,9 +495,9 @@ section{
 }
 
 .contact-item{
-  background:#0a0a0a;
+  background:#0b0b0b;
 
-  border:1px solid #171717;
+  border:1px solid var(--border);
 
   border-radius:18px;
 
@@ -508,14 +510,14 @@ section{
 }
 
 .contact-item a{
-  color:var(--green);
+  color:var(--accent);
   text-decoration:none;
 }
 
 /* Footer */
 
 footer{
-  padding:40px 20px;
+  padding:45px 20px;
   text-align:center;
 
   border-top:1px solid #111;
@@ -523,27 +525,12 @@ footer{
 
 footer p{
   color:#d4d4d4;
-  margin-bottom:6px;
+  margin-bottom:8px;
 }
 
 footer span{
   color:#666;
   font-size:14px;
-}
-
-/* Animation */
-
-@keyframes fadeUp{
-
-  from{
-    opacity:0;
-    transform:translateY(20px);
-  }
-
-  to{
-    opacity:1;
-    transform:translateY(0);
-  }
 }
 
 /* Mobile */
@@ -552,10 +539,11 @@ footer span{
 
   .hero-container{
     grid-template-columns:1fr;
+    gap:50px;
   }
 
   .hero h1{
-    font-size:44px;
+    font-size:46px;
   }
 
   .nav-links{
@@ -563,7 +551,11 @@ footer span{
   }
 
   .section-title{
-    font-size:34px;
+    font-size:36px;
+  }
+
+  .skills-grid{
+    grid-template-columns:1fr;
   }
 
 }
@@ -579,7 +571,7 @@ footer span{
 
   <div class="loader-content">
 
-    <div class="loader-logo"></div>
+    <div class="loader-ring"></div>
 
     <p>Loading Portfolio</p>
 
@@ -595,9 +587,9 @@ footer span{
 
 <div class="logo">
 
-  <div class="hex"></div>
+<div class="logo-box"></div>
 
-  <div class="dot"></div>
+<span>Adithyan.V</span>
 
 </div>
 
@@ -609,7 +601,7 @@ footer span{
 
 <li><a href="#projects">Projects</a></li>
 
-<li><a href="#certifications">Certification</a></li>
+<li><a href="#certifications">Certifications</a></li>
 
 <li><a href="#contact">Contact</a></li>
 
@@ -632,29 +624,24 @@ Cybersecurity Researcher
 </div>
 
 <h1>
-Hi, I'm <span>Adithyan.V</span>
+Adithyan<span>.V</span>
 </h1>
 
 <h2>
-Cybersecurity Researcher focused on Offensive Security, SOC Operations, and Web Application Security
+Focused on Offensive Security, SOC Operations, and Web Application Security.
 </h2>
 
 <p>
 
-Cybersecurity researcher focused equally on
-<span class="highlight">Offensive Security</span>
-and
-<span class="highlight">Defensive Security</span>,
-
-specializing in
+Cybersecurity researcher specializing in
 <span class="highlight">VAPT</span>,
 <span class="highlight">SOC Operations</span>,
 <span class="highlight">Threat Monitoring</span>,
-<span class="highlight">Web Application Security</span>,
+<span class="highlight">Web Security</span>,
 and
 <span class="highlight">Bug Bounty Hunting</span>.
 
-Focused on identifying vulnerabilities and strengthening security posture through practical research.
+Focused on identifying vulnerabilities and improving security posture through practical security research and hands-on analysis.
 
 </p>
 
@@ -680,8 +667,8 @@ Focused on identifying vulnerabilities and strengthening security posture throug
 Contact Me
 </a>
 
-<a href="#about" class="btn secondary">
-Learn More
+<a href="#projects" class="btn secondary">
+View Projects
 </a>
 
 </div>
@@ -736,44 +723,11 @@ Focused on offensive and defensive cybersecurity operations.
 
 <p class="about-text">
 
-I am a
-<strong>Cybersecurity Researcher</strong>
-and
-<strong>Bug Bounty Hunter</strong>
+I am a cybersecurity researcher and bug bounty hunter currently pursuing the CICSA Global Certification at Red Team Hacker Academy.
 
-currently pursuing the
-<strong>CICSA Global Certification</strong>
-at
-<strong>Red Team Hacker Academy</strong>.
+My expertise includes vulnerability assessment and penetration testing, SOC operations, web application security, packet analysis, and threat monitoring.
 
-My expertise spans both
-<strong>Offensive Security</strong>
-and
-<strong>Defensive Security</strong>,
-
-with hands-on experience in
-<strong>Vulnerability Assessment and Penetration Testing (VAPT)</strong>,
-<strong>SOC Operations</strong>,
-log analysis,
-packet analysis,
-web application security,
-threat monitoring,
-and vulnerability assessment.
-
-I actively participate in
-<strong>bug bounty programs</strong>,
-responsibly identifying and documenting real-world vulnerabilities impacting digital infrastructure.
-
-With a background in
-<strong>BCA Cyber Security & Cloud Computing</strong>
-and a virtual internship in
-<strong>Cyber Security with AI</strong>,
-
-I am building expertise for roles such as
-<strong>Penetration Tester</strong>,
-<strong>Cyber Security Analyst</strong>,
-and
-<strong>SOC Analyst</strong>.
+With a background in BCA Cyber Security & Cloud Computing and experience in cybersecurity-focused projects, I am building expertise for roles such as Penetration Tester, Cyber Security Analyst, and SOC Analyst.
 
 </p>
 
@@ -812,17 +766,17 @@ Core <span>Skills</span>
 
 <div class="skill-card">
 <h3>Packet Analysis</h3>
-<p>Analyzing network traffic for suspicious activity.</p>
+<p>Analyzing network traffic and suspicious activity.</p>
 </div>
 
 <div class="skill-card">
-<h3>Web App Security</h3>
+<h3>Web Security</h3>
 <p>Testing and securing modern web applications.</p>
 </div>
 
 <div class="skill-card">
 <h3>SOC Operations</h3>
-<p>Threat monitoring and incident investigation.</p>
+<p>Threat monitoring and incident investigation workflows.</p>
 </div>
 
 </div>
@@ -831,23 +785,21 @@ Core <span>Skills</span>
 
 </section>
 
-  <!-- Projects -->
+<!-- Projects -->
 
 <section id="projects">
 
 <div class="container">
 
 <h2 class="section-title">
-Featured <span>Projects</span>
+Selected <span>Projects</span>
 </h2>
 
 <p class="section-sub">
-Hands-on development and network security projects.
+Focused on cybersecurity, automation, and secure system design.
 </p>
 
 <div class="skills-grid">
-
-<!-- Project 1 -->
 
 <div class="skill-card">
 
@@ -855,21 +807,15 @@ Hands-on development and network security projects.
 Secure Wireless Network Design
 </h3>
 
-<p style="margin-bottom:14px;color:#00ff88;">
+<div class="project-date">
 Internship Project • 2025
-</p>
+</div>
 
 <p>
-
-Designed and configured a secure wireless network with a static WAN IP and WPA2 encryption while implementing MAC filtering and strong administrative credentials to prevent unauthorized access.
-
-Tested connectivity, performance, and network security in Cisco Packet Tracer using protocols including TCP/IP, DNS, DHCP, HTTP, and HTTPS.
-
+Designed and secured a wireless network infrastructure using WPA2 encryption, MAC filtering, and secure administrative configurations in Cisco Packet Tracer.
 </p>
 
 </div>
-
-<!-- Project 2 -->
 
 <div class="skill-card">
 
@@ -877,23 +823,15 @@ Tested connectivity, performance, and network security in Cisco Packet Tracer us
 TransumDocs
 </h3>
 
-<p style="margin-bottom:14px;color:#00ff88;">
+<div class="project-date">
 Jan 2025 – Mar 2025
-</p>
+</div>
 
 <p>
-
-Developed a document processing system integrating PDF summarization, image-to-text translation, and PDF-to-text conversion to streamline document management workflows.
-
-Implemented Admin and User modules for efficient processing, enabling professionals to convert scanned reports, contracts, and meeting notes into editable text.
-
-Built using Python and HTML with automated text extraction and summarization features for PDF and image files.
-
+Built a document processing platform for PDF summarization, image-to-text extraction, and automated text conversion using Python and HTML.
 </p>
 
 </div>
-
-<!-- Project 3 -->
 
 <div class="skill-card">
 
@@ -901,16 +839,12 @@ Built using Python and HTML with automated text extraction and summarization fea
 Smart-Bite
 </h3>
 
-<p style="margin-bottom:14px;color:#00ff88;">
+<div class="project-date">
 Jun 2024 – Nov 2024
-</p>
+</div>
 
 <p>
-
-Developed Smart Bite, a PHP-MySQL based canteen automation system supporting menu management, order tracking, inventory control, payment processing, and event bookings.
-
-Integrated secure user authentication and real-time order and inventory synchronization to improve operational efficiency and reduce manual management overhead.
-
+Developed a PHP and MySQL based canteen automation system with order management, inventory tracking, and secure user authentication.
 </p>
 
 </div>
@@ -932,79 +866,21 @@ Education & <span>Certifications</span>
 </h2>
 
 <p class="section-sub">
-Academic background, cybersecurity training, and certifications.
+Academic background and cybersecurity training.
 </p>
-
-<!-- Education -->
-
-<h2 style="margin-bottom:25px;color:#00ff88;">
-Education
-</h2>
-
-<div class="skills-grid" style="margin-bottom:60px;">
-
-<div class="skill-card">
-
-<h3>
-Certified IT Infrastructure and Cyber SOC Analyst (CICSA)
-</h3>
-
-<p>
-<strong>Status:</strong> In Progress
-<br><br>
-Red Team Hacker Academy, Trivandrum
-</p>
-
-</div>
-
-<div class="skill-card">
-
-<h3>
-Bachelor of Computer Application
-</h3>
-
-<p>
-<strong>Duration:</strong> 2022 – 2025
-<br><br>
-Indira Gandhi College Of Arts And Science, Ernakulam
-</p>
-
-</div>
-
-<div class="skill-card">
-
-<h3>
-Diploma in Cloud Computing & Cyber Security
-</h3>
-
-<p>
-<strong>Duration:</strong> Apr 2024 – Apr 2025
-<br><br>
-GITH Global India Techno Hub, Ernakulam
-</p>
-
-</div>
-
-</div>
-
-<!-- Certifications -->
-
-<h2 style="margin-bottom:25px;color:#00ff88;">
-Certifications
-</h2>
 
 <div class="skills-grid">
 
 <div class="skill-card">
 
 <h3>
-Advanced Diploma in Cyber Security & Cloud Computing
+CICSA Certification
 </h3>
 
 <p>
-STED Council
+Certified IT Infrastructure and Cyber SOC Analyst (In Progress)
 <br><br>
-(Skill Development Council Canada)
+Red Team Hacker Academy
 </p>
 
 </div>
@@ -1012,11 +888,13 @@ STED Council
 <div class="skill-card">
 
 <h3>
-Cyber Security with AI
+BCA Cyber Security
 </h3>
 
 <p>
-Virtual Internship Program
+Bachelor of Computer Application
+<br><br>
+2022 – 2025
 </p>
 
 </div>
@@ -1024,23 +902,27 @@ Virtual Internship Program
 <div class="skill-card">
 
 <h3>
+Cloud & Cyber Security
+</h3>
+
+<p>
+Diploma in Cloud Computing & Cyber Security
+<br><br>
+2024 – 2025
+</p>
+
+</div>
+
+<div class="skill-card">
+
+<h3>
+Cisco Certifications
+</h3>
+
+<p>
 Introduction to Cyber Security
-</h3>
-
-<p>
-Cisco Networking Academy
-</p>
-
-</div>
-
-<div class="skill-card">
-
-<h3>
+<br><br>
 Cyber Security Essentials
-</h3>
-
-<p>
-Cisco Networking Academy
 </p>
 
 </div>
@@ -1052,7 +934,19 @@ Python Programming
 </h3>
 
 <p>
-Programming & Automation Fundamentals
+Programming fundamentals and automation concepts for cybersecurity workflows.
+</p>
+
+</div>
+
+<div class="skill-card">
+
+<h3>
+Cyber Security with AI
+</h3>
+
+<p>
+Virtual internship program focused on cybersecurity concepts and AI integration.
 </p>
 
 </div>
@@ -1149,9 +1043,9 @@ window.addEventListener("load", () => {
 
       loader.style.display = "none";
 
-    }, 600);
+    }, 500);
 
-  }, 900);
+  }, 700);
 
 });
 
