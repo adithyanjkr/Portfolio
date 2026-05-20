@@ -3,18 +3,20 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
 <title>Adithyan.V | Cybersecurity Portfolio</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
+
 :root{
   --bg:#050505;
-  --card:#0c0c0c;
+  --card:#0a0a0a;
   --green:#00ff88;
   --green-soft:rgba(0,255,136,.08);
   --text:#ffffff;
-  --muted:#a1a1aa;
+  --muted:#9ca3af;
   --border:#171717;
 }
 
@@ -33,17 +35,20 @@ body{
   position:relative;
 }
 
-/* Cyber Background */
+/* Background */
+
 body::before{
   content:"";
   position:fixed;
   inset:0;
+
   background:
-  linear-gradient(rgba(0,0,0,.92),rgba(0,0,0,.95)),
+  linear-gradient(rgba(0,0,0,.95),rgba(0,0,0,.96)),
   url('https://images.unsplash.com/photo-1510511459019-5dda7724fd87?auto=format&fit=crop&w=1920&q=80');
+
   background-size:cover;
   background-position:center;
-  opacity:.14;
+  opacity:.06;
   z-index:-3;
 }
 
@@ -51,15 +56,19 @@ body::after{
   content:"";
   position:fixed;
   inset:0;
+
   background:
   radial-gradient(circle at top left,
-  rgba(0,255,136,.08),transparent 30%),
+  rgba(0,255,136,.05),transparent 30%),
+
   radial-gradient(circle at bottom right,
-  rgba(0,255,136,.06),transparent 30%);
+  rgba(0,255,136,.03),transparent 30%);
+
   z-index:-2;
 }
 
 /* Scrollbar */
+
 ::-webkit-scrollbar{
   width:8px;
 }
@@ -68,84 +77,78 @@ body::after{
   background:var(--green);
 }
 
-/* LOADER */
+/* Minimal Loader */
+
 #loader{
   position:fixed;
   inset:0;
-  background:#030303;
-  z-index:999999;
+  background:#050505;
+  z-index:99999;
+
   display:flex;
   justify-content:center;
   align-items:center;
-  transition:opacity .8s ease;
+
+  transition:opacity .6s ease;
 }
 
-.loader-box{
-  width:520px;
-  max-width:92%;
-  background:#080808;
-  border:1px solid rgba(0,255,136,.15);
-  border-radius:24px;
-  padding:35px;
-  box-shadow:0 0 60px rgba(0,255,136,.08);
+.loader-content{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:18px;
 }
 
-.loader-title{
-  color:var(--green);
-  font-size:15px;
-  letter-spacing:2px;
-  margin-bottom:25px;
+.loader-logo{
+  width:42px;
+  height:42px;
+  border:3px solid rgba(255,255,255,.08);
+  border-top:3px solid var(--green);
+  border-radius:50%;
+
+  animation:spin 1s linear infinite;
 }
 
-.loader-lines p{
-  color:#7d7d7d;
-  font-family:monospace;
-  margin:10px 0;
+.loader-content p{
+  color:#8b8b8b;
+  font-size:14px;
+  letter-spacing:1px;
 }
 
-.loading-bar{
-  margin-top:25px;
-  height:8px;
-  background:#111;
-  border-radius:30px;
-  overflow:hidden;
-}
-
-.loading-bar span{
-  display:block;
-  height:100%;
-  width:0%;
-  background:var(--green);
-  animation:load 2.7s forwards;
-}
-
-@keyframes load{
+@keyframes spin{
   to{
-    width:100%;
+    transform:rotate(360deg);
   }
 }
 
-/* HEADER */
+/* Header */
+
 header{
   position:fixed;
   top:0;
   width:100%;
   z-index:1000;
-  backdrop-filter:blur(14px);
-  background:rgba(5,5,5,.85);
-  border-bottom:1px solid rgba(255,255,255,.05);
+
+  backdrop-filter:blur(12px);
+
+  background:rgba(5,5,5,.75);
+
+  border-bottom:1px solid rgba(255,255,255,.04);
 }
 
 .navbar{
   width:min(1200px,92%);
   margin:auto;
+
   display:flex;
   justify-content:space-between;
   align-items:center;
+
   padding:22px 0;
 }
 
-/* cyber sticker */
+/* Logo */
+
 .logo{
   display:flex;
   align-items:center;
@@ -155,9 +158,19 @@ header{
 .hex{
   width:18px;
   height:18px;
+
   background:var(--green);
-  clip-path:polygon(25% 6.7%,75% 6.7%,100% 50%,75% 93.3%,25% 93.3%,0% 50%);
-  box-shadow:0 0 20px rgba(0,255,136,.5);
+
+  clip-path:polygon(
+  25% 6.7%,
+  75% 6.7%,
+  100% 50%,
+  75% 93.3%,
+  25% 93.3%,
+  0% 50%
+  );
+
+  box-shadow:0 0 10px rgba(0,255,136,.18);
 }
 
 .dot{
@@ -165,51 +178,79 @@ header{
   height:8px;
   border-radius:50%;
   background:var(--green);
+
   animation:pulse 2s infinite;
 }
 
 @keyframes pulse{
+
   0%,100%{
     transform:scale(1);
     opacity:1;
   }
+
   50%{
-    transform:scale(1.4);
+    transform:scale(1.3);
     opacity:.5;
   }
 }
 
 .nav-links{
   display:flex;
-  list-style:none;
   gap:35px;
+  list-style:none;
 }
 
 .nav-links a{
   text-decoration:none;
   color:#d1d5db;
-  transition:.3s;
   font-size:15px;
+  font-weight:500;
+  position:relative;
+  transition:.3s;
+}
+
+.nav-links a::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:-6px;
+
+  width:0%;
+  height:1px;
+
+  background:var(--green);
+
+  transition:.3s;
 }
 
 .nav-links a:hover{
   color:var(--green);
 }
 
-/* HERO */
+.nav-links a:hover::after{
+  width:100%;
+}
+
+/* Hero */
+
 .hero{
   min-height:100vh;
+
   display:flex;
   align-items:center;
   justify-content:center;
+
   padding:120px 5%;
 }
 
 .hero-container{
   width:min(1200px,100%);
+
   display:grid;
   grid-template-columns:1.2fr .8fr;
-  gap:60px;
+
+  gap:70px;
   align-items:center;
 }
 
@@ -217,18 +258,27 @@ header{
   display:inline-flex;
   align-items:center;
   gap:10px;
+
   padding:12px 20px;
+
   border-radius:999px;
+
   background:var(--green-soft);
-  border:1px solid rgba(0,255,136,.15);
+
+  border:1px solid rgba(0,255,136,.12);
+
   color:var(--green);
-  margin-bottom:25px;
+
+  margin-bottom:28px;
 }
 
 .hero h1{
-  font-size:72px;
-  line-height:1.05;
-  margin-bottom:15px;
+  font-size:58px;
+  line-height:1.1;
+  font-weight:800;
+  letter-spacing:-2px;
+
+  margin-bottom:18px;
 }
 
 .hero h1 span{
@@ -236,14 +286,19 @@ header{
 }
 
 .hero h2{
-  font-size:22px;
+  font-size:20px;
+  font-weight:500;
   color:#d4d4d4;
+
+  line-height:1.7;
+
   margin-bottom:25px;
 }
 
 .hero p{
   color:var(--muted);
-  font-size:17px;
+
+  font-size:16px;
   line-height:1.9;
 }
 
@@ -256,30 +311,41 @@ header{
   display:flex;
   flex-wrap:wrap;
   gap:12px;
+
   margin-top:28px;
 }
 
 .tag{
   background:#0f0f0f;
+
   border:1px solid rgba(0,255,136,.12);
+
   padding:12px 18px;
+
   border-radius:12px;
+
   color:#d4d4d4;
+
   font-size:14px;
 }
 
 .buttons{
   margin-top:35px;
+
   display:flex;
   gap:18px;
 }
 
 .btn{
   text-decoration:none;
+
   padding:15px 28px;
+
   border-radius:14px;
-  transition:.3s;
+
   font-weight:600;
+
+  transition:.3s;
 }
 
 .primary{
@@ -296,12 +362,16 @@ header{
   transform:translateY(-4px);
 }
 
-/* CARD */
+/* Cards */
+
 .hero-card,
 .card{
   background:var(--card);
+
   border:1px solid var(--border);
-  border-radius:28px;
+
+  border-radius:26px;
+
   padding:35px;
 }
 
@@ -312,16 +382,24 @@ header{
 
 .hero-card::before{
   content:"";
+
   position:absolute;
   inset:0;
-  background:linear-gradient(
+
+  background:
+  linear-gradient(
   135deg,
-  rgba(0,255,136,.08),
-  transparent 45%);
+  rgba(0,255,136,.05),
+  transparent 45%
+  );
 }
 
 .stat{
   margin-bottom:24px;
+}
+
+.stat:last-child{
+  margin-bottom:0;
 }
 
 .stat p{
@@ -332,11 +410,14 @@ header{
 .stat h3{
   margin-top:8px;
   font-size:18px;
+  line-height:1.6;
 }
 
-/* SECTION */
+/* Sections */
+
 section{
   padding:110px 5%;
+  animation:fadeUp .8s ease;
 }
 
 .container{
@@ -363,7 +444,8 @@ section{
   color:#c5c5c5;
 }
 
-/* SKILLS */
+/* Skills */
+
 .skills-grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
@@ -371,16 +453,26 @@ section{
 }
 
 .skill-card{
-  background:#0d0d0d;
+  background:#0a0a0a;
+
   border:1px solid #171717;
+
   border-radius:22px;
+
   padding:28px;
-  transition:.3s;
+
+  transition:
+  transform .25s ease,
+  border-color .25s ease,
+  background .25s ease;
 }
 
 .skill-card:hover{
-  transform:translateY(-6px);
-  border-color:rgba(0,255,136,.2);
+  transform:translateY(-4px);
+
+  border-color:rgba(0,255,136,.18);
+
+  background:#101010;
 }
 
 .skill-card h3{
@@ -388,17 +480,31 @@ section{
   margin-bottom:12px;
 }
 
-/* CONTACT */
+.skill-card p{
+  line-height:1.8;
+  color:#c4c4c4;
+}
+
+/* Contact */
+
 .contact-grid{
   display:grid;
   gap:18px;
 }
 
 .contact-item{
-  background:#0d0d0d;
+  background:#0a0a0a;
+
   border:1px solid #171717;
+
   border-radius:18px;
-  padding:22px;
+
+  padding:24px;
+}
+
+.contact-item strong{
+  display:block;
+  margin-bottom:10px;
 }
 
 .contact-item a{
@@ -406,76 +512,114 @@ section{
   text-decoration:none;
 }
 
-/* FOOTER */
+/* Footer */
+
 footer{
-  padding:35px;
+  padding:40px 20px;
   text-align:center;
-  color:#6f6f6f;
+
   border-top:1px solid #111;
 }
 
-/* MOBILE */
+footer p{
+  color:#d4d4d4;
+  margin-bottom:6px;
+}
+
+footer span{
+  color:#666;
+  font-size:14px;
+}
+
+/* Animation */
+
+@keyframes fadeUp{
+
+  from{
+    opacity:0;
+    transform:translateY(20px);
+  }
+
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+/* Mobile */
+
 @media(max-width:900px){
 
-.hero-container{
-  grid-template-columns:1fr;
+  .hero-container{
+    grid-template-columns:1fr;
+  }
+
+  .hero h1{
+    font-size:44px;
+  }
+
+  .nav-links{
+    display:none;
+  }
+
+  .section-title{
+    font-size:34px;
+  }
+
 }
 
-.hero h1{
-  font-size:48px;
-}
-
-.nav-links{
-  display:none;
-}
-
-.section-title{
-  font-size:34px;
-}
-}
 </style>
 </head>
 
 <body>
 
 <!-- Loader -->
+
 <div id="loader">
-  <div class="loader-box">
-    <div class="loader-title">
-      INITIALIZING SECURITY CONSOLE
-    </div>
 
-    <div class="loader-lines">
-      <p>> Loading secure modules...</p>
-      <p>> Initializing SOC environment...</p>
-      <p>> Launching penetration toolkit...</p>
-      <p>> Connecting cyber interface...</p>
-      <p>> Portfolio ready...</p>
-    </div>
+  <div class="loader-content">
 
-    <div class="loading-bar">
-      <span></span>
-    </div>
+    <div class="loader-logo"></div>
+
+    <p>Loading Portfolio</p>
+
   </div>
+
 </div>
 
+<!-- Header -->
+
 <header>
+
 <nav class="navbar">
 
 <div class="logo">
+
   <div class="hex"></div>
+
   <div class="dot"></div>
+
 </div>
 
 <ul class="nav-links">
+
 <li><a href="#about">About</a></li>
+
 <li><a href="#skills">Skills</a></li>
+
+<li><a href="#projects">Projects</a></li>
+
 <li><a href="#certifications">Certification</a></li>
+
 <li><a href="#contact">Contact</a></li>
+
 </ul>
 
 </nav>
+
 </header>
+
+<!-- Hero -->
 
 <section class="hero">
 
@@ -492,14 +636,16 @@ Hi, I'm <span>Adithyan.V</span>
 </h1>
 
 <h2>
-Bug Hunter | SOC Enthusiast | Penetration Tester
+Cybersecurity Researcher focused on Offensive Security, SOC Operations, and Web Application Security
 </h2>
 
 <p>
+
 Cybersecurity researcher focused equally on
 <span class="highlight">Offensive Security</span>
 and
 <span class="highlight">Defensive Security</span>,
+
 specializing in
 <span class="highlight">VAPT</span>,
 <span class="highlight">SOC Operations</span>,
@@ -507,24 +653,42 @@ specializing in
 <span class="highlight">Web Application Security</span>,
 and
 <span class="highlight">Bug Bounty Hunting</span>.
+
 Focused on identifying vulnerabilities and strengthening security posture through practical research.
+
 </p>
 
 <div class="tags">
+
 <div class="tag">VAPT</div>
+
 <div class="tag">SOC Operations</div>
-<div class="tag">Log Analysis</div>
-<div class="tag">Packet Analysis</div>
+
+<div class="tag">Threat Monitoring</div>
+
 <div class="tag">Bug Hunting</div>
+
 <div class="tag">Web Security</div>
+
+<div class="tag">Packet Analysis</div>
+
 </div>
 
 <div class="buttons">
-<a href="#contact" class="btn primary">Contact Me</a>
-<a href="#about" class="btn secondary">Learn More</a>
+
+<a href="#contact" class="btn primary">
+Contact Me
+</a>
+
+<a href="#about" class="btn secondary">
+Learn More
+</a>
+
 </div>
 
 </div>
+
+<!-- Hero Card -->
 
 <div class="hero-card">
 
@@ -551,9 +715,13 @@ Focused on identifying vulnerabilities and strengthening security posture throug
 </div>
 
 </div>
+
 </section>
 
+<!-- About -->
+
 <section id="about">
+
 <div class="container">
 
 <h2 class="section-title">
@@ -561,16 +729,18 @@ About <span>Me</span>
 </h2>
 
 <p class="section-sub">
-Focused on both offensive and defensive cybersecurity operations.
+Focused on offensive and defensive cybersecurity operations.
 </p>
 
 <div class="card">
+
 <p class="about-text">
 
 I am a
 <strong>Cybersecurity Researcher</strong>
 and
 <strong>Bug Bounty Hunter</strong>
+
 currently pursuing the
 <strong>CICSA Global Certification</strong>
 at
@@ -580,6 +750,7 @@ My expertise spans both
 <strong>Offensive Security</strong>
 and
 <strong>Defensive Security</strong>,
+
 with hands-on experience in
 <strong>Vulnerability Assessment and Penetration Testing (VAPT)</strong>,
 <strong>SOC Operations</strong>,
@@ -591,14 +762,13 @@ and vulnerability assessment.
 
 I actively participate in
 <strong>bug bounty programs</strong>,
-responsibly identifying and documenting
-real-world vulnerabilities impacting
-commercial and digital infrastructure.
+responsibly identifying and documenting real-world vulnerabilities impacting digital infrastructure.
 
 With a background in
 <strong>BCA Cyber Security & Cloud Computing</strong>
 and a virtual internship in
 <strong>Cyber Security with AI</strong>,
+
 I am building expertise for roles such as
 <strong>Penetration Tester</strong>,
 <strong>Cyber Security Analyst</strong>,
@@ -606,12 +776,17 @@ and
 <strong>SOC Analyst</strong>.
 
 </p>
+
 </div>
 
 </div>
+
 </section>
 
+<!-- Skills -->
+
 <section id="skills">
+
 <div class="container">
 
 <h2 class="section-title">
@@ -622,7 +797,7 @@ Core <span>Skills</span>
 
 <div class="skill-card">
 <h3>Bug Hunting</h3>
-<p>Identifying and responsibly disclosing vulnerabilities.</p>
+<p>Identifying and responsibly disclosing security vulnerabilities.</p>
 </div>
 
 <div class="skill-card">
@@ -651,10 +826,58 @@ Core <span>Skills</span>
 </div>
 
 </div>
+
 </div>
+
 </section>
 
+<!-- Projects -->
+
+<section id="projects">
+
+<div class="container">
+
+<h2 class="section-title">
+Featured <span>Projects</span>
+</h2>
+
+<p class="section-sub">
+Hands-on cybersecurity labs, investigations, and security research.
+</p>
+
+<div class="skills-grid">
+
+<div class="skill-card">
+<h3>Web Application VAPT</h3>
+<p>
+Performed vulnerability assessment and penetration testing against web applications focusing on authentication flaws, XSS, and misconfigurations.
+</p>
+</div>
+
+<div class="skill-card">
+<h3>SOC Monitoring Lab</h3>
+<p>
+Threat monitoring and log analysis using simulated SOC workflows and incident investigation techniques.
+</p>
+</div>
+
+<div class="skill-card">
+<h3>Packet Analysis Investigation</h3>
+<p>
+Analyzed malicious and suspicious traffic using packet inspection methodologies and network analysis workflows.
+</p>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- Certifications -->
+
 <section id="certifications">
+
 <div class="container">
 
 <h2 class="section-title">
@@ -662,10 +885,11 @@ Education & <span>Certifications</span>
 </h2>
 
 <p class="section-sub">
-Academic background, cybersecurity training, and industry certifications.
+Academic background, cybersecurity training, and certifications.
 </p>
 
-<!-- EDUCATION -->
+<!-- Education -->
+
 <h2 style="margin-bottom:25px;color:#00ff88;">
 Education
 </h2>
@@ -673,32 +897,51 @@ Education
 <div class="skills-grid" style="margin-bottom:60px;">
 
 <div class="skill-card">
-<h3>Certified IT Infrastructure and Cyber SOC Analyst (CICSA)</h3>
+
+<h3>
+Certified IT Infrastructure and Cyber SOC Analyst (CICSA)
+</h3>
+
 <p>
-<strong>Status:</strong> In Progress<br>
+<strong>Status:</strong> In Progress
+<br><br>
 Red Team Hacker Academy, Trivandrum
 </p>
+
 </div>
 
 <div class="skill-card">
-<h3>Bachelor of Computer Application</h3>
+
+<h3>
+Bachelor of Computer Application
+</h3>
+
 <p>
-<strong>Duration:</strong> 2022 – 2025<br>
+<strong>Duration:</strong> 2022 – 2025
+<br><br>
 Indira Gandhi College Of Arts And Science, Ernakulam
 </p>
+
 </div>
 
 <div class="skill-card">
-<h3>Diploma in Cloud Computing & Cyber Security (Add-On)</h3>
+
+<h3>
+Diploma in Cloud Computing & Cyber Security
+</h3>
+
 <p>
-<strong>Duration:</strong> Apr 2024 – Apr 2025<br>
+<strong>Duration:</strong> Apr 2024 – Apr 2025
+<br><br>
 GITH Global India Techno Hub, Ernakulam
 </p>
-</div>
 
 </div>
 
-<!-- CERTIFICATIONS -->
+</div>
+
+<!-- Certifications -->
+
 <h2 style="margin-bottom:25px;color:#00ff88;">
 Certifications
 </h2>
@@ -706,47 +949,77 @@ Certifications
 <div class="skills-grid">
 
 <div class="skill-card">
-<h3>Advanced Diploma in Cyber Security & Cloud Computing</h3>
+
+<h3>
+Advanced Diploma in Cyber Security & Cloud Computing
+</h3>
+
 <p>
-STED Council<br>
+STED Council
+<br><br>
 (Skill Development Council Canada)
 </p>
+
 </div>
 
 <div class="skill-card">
-<h3>Cyber Security with AI</h3>
+
+<h3>
+Cyber Security with AI
+</h3>
+
 <p>
 Virtual Internship Program
 </p>
+
 </div>
 
 <div class="skill-card">
-<h3>Introduction to Cyber Security</h3>
+
+<h3>
+Introduction to Cyber Security
+</h3>
+
 <p>
 Cisco Networking Academy
 </p>
+
 </div>
 
 <div class="skill-card">
-<h3>Cyber Security Essentials</h3>
+
+<h3>
+Cyber Security Essentials
+</h3>
+
 <p>
 Cisco Networking Academy
 </p>
+
 </div>
 
 <div class="skill-card">
-<h3>Python Programming</h3>
+
+<h3>
+Python Programming
+</h3>
+
 <p>
 Programming & Automation Fundamentals
 </p>
-</div>
 
 </div>
 
 </div>
+
+</div>
+
 </section>
 
+<!-- Contact -->
+
 <section id="contact">
+
 <div class="container">
 
 <h2 class="section-title">
@@ -756,53 +1029,85 @@ Contact <span>Information</span>
 <div class="contact-grid">
 
 <div class="contact-item">
-<strong>Email</strong><br>
+
+<strong>Email</strong>
+
 <a href="mailto:adithyanv783@gmail.com">
 adithyanv783@gmail.com
 </a>
+
 </div>
 
 <div class="contact-item">
-<strong>LinkedIn</strong><br>
+
+<strong>LinkedIn</strong>
+
 <a href="https://www.linkedin.com/in/adithyan-v-" target="_blank">
 linkedin.com/in/adithyan-v-
 </a>
+
 </div>
 
 <div class="contact-item">
-<strong>TryHackMe</strong><br>
+
+<strong>TryHackMe</strong>
+
 <a href="https://tryhackme.com/p/adthynv" target="_blank">
 tryhackme.com/p/adthynv
 </a>
+
 </div>
 
 <div class="contact-item">
-<strong>GitHub</strong><br>
+
+<strong>GitHub</strong>
+
 <a href="https://github.com/adi783885" target="_blank">
 github.com/adi783885
 </a>
+
 </div>
 
 </div>
+
 </div>
+
 </section>
 
+<!-- Footer -->
+
 <footer>
-© 2026 Adithyan.V | Cybersecurity Portfolio
+
+<p>
+© 2026 Adithyan.V
+</p>
+
+<span>
+Cybersecurity Portfolio
+</span>
+
 </footer>
 
 <script>
+
 window.addEventListener("load", () => {
+
   setTimeout(() => {
+
     const loader = document.getElementById("loader");
+
     loader.style.opacity = "0";
 
     setTimeout(() => {
-      loader.style.display = "none";
-    }, 800);
 
-  }, 2600);
+      loader.style.display = "none";
+
+    }, 600);
+
+  }, 900);
+
 });
+
 </script>
 
 </body>
