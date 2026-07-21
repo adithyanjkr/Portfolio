@@ -559,14 +559,7 @@
                     <span class="hero-tag">Web Security</span>
                 </div>
 
-                <div class="hero-cta">
-                    <!-- Download Resume Button (Triggers text file generation) -->
-                    <button id="downloadResumeBtn" class="btn btn-primary">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                        Download Resume
-                    </button>
-                    <!-- View Resume Button -->
-                    <button id="viewResumeBtn" class="btn btn-secondary">View Resume</button>
+                <div class="hero-cta">                  
                     <a href="#contact" class="btn btn-secondary">Get in Touch</a>
                 </div>
             </div>
@@ -775,95 +768,5 @@
             <div id="resumeModalContent" class="modal-body"></div>
         </div>
     </div>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <p>&copy; 2026 Adithyan.V — Cybersecurity Portfolio</p>
-        </div>
-    </footer>
-
-    <!-- Script to handle dynamic resume preview and download -->
-    <script>
-        const resumeText = `ADITHYAN V
-Vijaya Vilasam, Elamadu PO, Ayoor, Kollam, Kerala - 691533
-+91 9778041634 | adithyanv783@gmail.com
-LinkedIn: linkedin.com/in/adithyan-v-/ | GitHub: github.com/adithyanjkr
-
-1. PROFESSIONAL SUMMARY
-Cybersecurity researcher and BCA graduate focused on both offensive exploitation and defensive infrastructure monitoring. Brings hands-on experience in bug hunting (HackerOne, huntr) and real-world vulnerability research, with verified security disclosures to Kerala Government web infrastructure via CERT-In. Currently advancing defensive skills in SOC operations, incident response, and log analysis as a CICSA candidate at Red Team Hacker Academy. Alongside core VAPT and SOC capabilities, conducts threat intelligence analysis on the side to track emerging malware campaigns and threat actor tactics. Seeking a Cyber Security Analyst, VAPT, or SOC Analyst role to apply a full-lifecycle security approach within a dedicated team.
-
-2. SKILLS
-• Cybersecurity: Offensive and Defensive Security, VAPT, Bug Hunting, Threat Intelligence, Incident Response, Log Analysis, Network Monitoring & Analysis (Wireshark, Cisco Packet Tracer).
-• Cisco Packet Tracer: Simulation and network design
-• Offensive Security Tools: Burp Suite Professional, Metasploit, SQLmap, Nmap, Gobuster, Hydra
-• Defensive Security Tools: Splunk, Wazuh, Snort, Wireshark
-• Programming & Web Tech: Python (Basic), HTML, CSS, PHP, MySQL
-• Environments & Virtualization: Kali Linux, Windows, Ubuntu, VMware, VirtualBox
-• Vulnerability Research: Independent Security Researcher with reported vulnerabilities in Kerala Government web infrastructure via CERT-In (Case IDs assigned). Active contributor to major bug bounty platforms.
-• CTF & Lab-Based Learning: Extensive experience in privilege escalation, network enumeration, and web testing through TryHackMe, HackTheBox, and PortSwigger Academy.
-
-3. EDUCATION
-• Certified IT Infrastructure and Cyber SOC Analyst (CICSA) - In Progress
-  Red Team Hacker Academy, Trivandrum
-• Diploma in Cloud Computing & Cyber Security (Add-On) (Apr 2024 - Apr 2025)
-  GITH Global India Techno Hub, Ernakulam
-• Bachelor of Computer Application (2022 - 2025)
-  Indira Gandhi College Of Arts And Science, Ernakulam
-
-4. PROJECTS
-• XSS Detection Using Snort IDS (2026)
-  Simulates and detects Cross-Site Scripting (XSS) attacks in real time using a Flask web application monitored continuously by Snort 3 engine.
-• Phishing Detection & Awareness (2026)
-  Evaluating live email threat samples and executing MXToolbox header verifications to analyze malicious vectors and reinforce user security posture.
-• Secure Wireless Network Design - Internship Project (2025)
-  Designed and configured a secure wireless network with static WAN IP, WPA2 encryption, MAC filtering, and administrative controls in Cisco Packet Tracer.
-• TransumDocs (Jan 2025 - Mar 2025)
-  Document processing system integrating PDF summarization, image-to-text translation, and PDF-to-text conversion built with Python & HTML.
-• Smart-Bite (Jun 2024 - Nov 2024)
-  PHP-MySQL web-based canteen automation system for menu management, order tracking, inventory control, and secure user authentication.
-
-5. INTERNSHIP
-• Cybersecurity with AI - Virtual Internship (NIIT Foundation & Cisco Networking Academy - 2025)
-  Completed virtual internship focused on cybersecurity fundamentals, threat detection, and secure network architecture. Simulated enterprise network with VLAN segmentation & ACLs.
-
-6. CERTIFICATES
-• Advanced Diploma in Cyber Security and Cloud Computing - STED Council / Skill Development Council Canada
-• Cyber Security Analyst Intern (Virtual Internship) & Letter of Recommendation - Zorvyn
-• Cyber Security with AI (Virtual Internship) - NIIT Foundation
-• Python Programming Certification`;
-
-        // Download functionality
-        document.getElementById('downloadResumeBtn').addEventListener('click', () => {
-            const blob = new Blob([resumeText], { type: 'text/plain' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'Adithyan_V_Resume.txt';
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            URL.revokeObjectURL(url);
-        });
-
-        // View Modal functionality
-        const modal = document.getElementById('resumeModal');
-        const modalContent = document.getElementById('resumeModalContent');
-        
-        document.getElementById('viewResumeBtn').addEventListener('click', () => {
-            modalContent.textContent = resumeText;
-            modal.style.display = 'flex';
-        });
-
-        document.getElementById('closeModalBtn').addEventListener('click', () => {
-            modal.style.display = 'none';
-        });
-
-        window.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                modal.style.display = 'none';
-            }
-        });
-    </script>
 </body>
 </html>
