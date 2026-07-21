@@ -1,1069 +1,869 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
-<title>Adithyan.V | Cybersecurity Portfolio</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
-<style>
-
-:root{
-  --bg:#050505;
-  --card:#0b0b0b;
-  --accent:#00ff88;
-  --accent-soft:rgba(0,255,136,.08);
-  --text:#ffffff;
-  --muted:#9ca3af;
-  --border:#1a1a1a;
-}
-
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  scroll-behavior:smooth;
-}
-
-html{
-  scroll-padding-top:100px;
-}
-
-body{
-  font-family:'Inter',sans-serif;
-  background:var(--bg);
-  color:var(--text);
-  overflow-x:hidden;
-  position:relative;
-}
-
-/* Background */
-
-body::before{
-  content:"";
-  position:fixed;
-  inset:0;
-
-  background:
-  linear-gradient(rgba(0,0,0,.96),rgba(0,0,0,.97)),
-  url('https://images.unsplash.com/photo-1510511459019-5dda7724fd87?auto=format&fit=crop&w=1920&q=80');
-
-  background-size:cover;
-  background-position:center;
-  opacity:.04;
-  z-index:-3;
-}
-
-body::after{
-  content:"";
-  position:fixed;
-  inset:0;
-
-  background:
-  radial-gradient(circle at top left,
-  rgba(0,255,136,.04),transparent 30%),
-
-  radial-gradient(circle at bottom right,
-  rgba(0,255,136,.03),transparent 30%);
-
-  z-index:-2;
-}
-
-/* Scrollbar */
-
-::-webkit-scrollbar{
-  width:8px;
-}
-
-::-webkit-scrollbar-thumb{
-  background:var(--accent);
-}
-
-/* Loader */
-
-#loader{
-  position:fixed;
-  inset:0;
-  background:#050505;
-  z-index:99999;
-
-  display:flex;
-  justify-content:center;
-  align-items:center;
-
-  transition:opacity .5s ease;
-}
-
-.loader-content{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  gap:18px;
-}
-
-.loader-ring{
-  width:42px;
-  height:42px;
-
-  border:2px solid rgba(255,255,255,.08);
-  border-top:2px solid var(--accent);
-
-  border-radius:50%;
-
-  animation:spin 1s linear infinite;
-}
-
-.loader-content p{
-  color:#808080;
-  font-size:13px;
-  letter-spacing:2px;
-  text-transform:uppercase;
-}
-
-@keyframes spin{
-  to{
-    transform:rotate(360deg);
-  }
-}
-
-/* Header */
-
-header{
-  position:fixed;
-  top:0;
-  width:100%;
-  z-index:1000;
-
-  backdrop-filter:blur(12px);
-
-  background:rgba(5,5,5,.75);
-
-  border-bottom:1px solid rgba(255,255,255,.04);
-}
-
-.navbar{
-  width:min(1180px,92%);
-  margin:auto;
-
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-
-  padding:24px 0;
-}
-
-/* Logo */
-
-.logo{
-  display:flex;
-  align-items:center;
-  gap:12px;
-}
-
-.logo-box{
-  width:16px;
-  height:16px;
-  background:var(--accent);
-  border-radius:4px;
-  box-shadow:0 0 18px rgba(0,255,136,.2);
-}
-
-.logo span{
-  font-size:15px;
-  font-weight:600;
-  letter-spacing:.5px;
-}
-
-/* Navigation */
-
-.nav-links{
-  display:flex;
-  gap:34px;
-  list-style:none;
-}
-
-.nav-links a{
-  text-decoration:none;
-  color:#d1d5db;
-  font-size:14px;
-  font-weight:500;
-  position:relative;
-  transition:.3s;
-}
-
-.nav-links a::after{
-  content:"";
-  position:absolute;
-  left:0;
-  bottom:-8px;
-
-  width:0%;
-  height:1px;
-
-  background:var(--accent);
-
-  transition:.3s;
-}
-
-.nav-links a:hover{
-  color:var(--accent);
-}
-
-.nav-links a:hover::after{
-  width:100%;
-}
-
-/* Sections */
-
-section{
-  padding:110px 5%;
-  position:relative;
-}
-
-.container{
-  width:min(1180px,100%);
-  margin:auto;
-}
-
-/* Hero */
-
-.hero{
-  min-height:100vh;
-
-  display:flex;
-  align-items:center;
-}
-
-.hero-container{
-  width:min(1180px,100%);
-
-  display:grid;
-  grid-template-columns:1.15fr .85fr;
-
-  gap:80px;
-  align-items:center;
-}
-
-.badge{
-  display:inline-flex;
-  align-items:center;
-
-  padding:12px 20px;
-
-  border-radius:999px;
-
-  background:var(--accent-soft);
-
-  border:1px solid rgba(0,255,136,.12);
-
-  color:var(--accent);
-
-  font-size:14px;
-  font-weight:600;
-
-  margin-bottom:28px;
-}
-
-.hero h1{
-  font-size:64px;
-  line-height:1.05;
-  font-weight:800;
-  letter-spacing:-2px;
-
-  margin-bottom:20px;
-}
-
-.hero h1 span{
-  color:var(--accent);
-}
-
-.hero h2{
-  font-size:20px;
-  font-weight:500;
-  color:#d4d4d4;
-
-  line-height:1.7;
-
-  margin-bottom:28px;
-}
-
-.hero p{
-  color:var(--muted);
-
-  font-size:16px;
-  line-height:1.9;
-
-  max-width:720px;
-}
-
-.highlight{
-  color:var(--accent);
-  font-weight:600;
-}
-
-/* Tags */
-
-.tags{
-  display:flex;
-  flex-wrap:wrap;
-  gap:12px;
-
-  margin-top:32px;
-}
-
-.tag{
-  background:#0f0f0f;
-
-  border:1px solid rgba(255,255,255,.05);
-
-  padding:12px 18px;
-
-  border-radius:12px;
-
-  color:#d4d4d4;
-
-  font-size:14px;
-}
-
-/* Buttons */
-
-.buttons{
-  margin-top:38px;
-
-  display:flex;
-  gap:18px;
-}
-
-.btn{
-  text-decoration:none;
-
-  padding:15px 28px;
-
-  border-radius:14px;
-
-  font-weight:600;
-
-  transition:.3s;
-}
-
-.primary{
-  background:var(--accent);
-  color:#000;
-}
-
-.secondary{
-  border:1px solid rgba(255,255,255,.08);
-  color:#fff;
-}
-
-.btn:hover{
-  transform:translateY(-4px);
-}
-
-/* Cards */
-
-.hero-card,
-.card{
-  background:var(--card);
-
-  border:1px solid var(--border);
-
-  border-radius:24px;
-
-  padding:38px;
-}
-
-.hero-card{
-  display:flex;
-  flex-direction:column;
-  gap:28px;
-}
-
-.stat p{
-  color:#7a7a7a;
-  font-size:13px;
-  margin-bottom:8px;
-  text-transform:uppercase;
-  letter-spacing:1px;
-}
-
-.stat h3{
-  font-size:18px;
-  line-height:1.6;
-  font-weight:600;
-}
-
-/* Typography */
-
-.section-title{
-  font-size:44px;
-  margin-bottom:14px;
-  letter-spacing:-1px;
-}
-
-.section-title span{
-  color:var(--accent);
-}
-
-.section-sub{
-  color:var(--muted);
-  margin-bottom:50px;
-  font-size:16px;
-}
-
-.about-text{
-  line-height:2;
-  color:#c5c5c5;
-}
-
-p{
-  text-wrap:pretty;
-}
-
-/* Grid */
-
-.skills-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
-  gap:24px;
-  align-items:stretch;
-}
-
-/* Cards */
-
-.skill-card{
-  background:#0b0b0b;
-
-  border:1px solid var(--border);
-
-  border-radius:20px;
-
-  padding:30px;
-
-  transition:
-  transform .25s ease,
-  border-color .25s ease,
-  background .25s ease;
-
-  display:flex;
-  flex-direction:column;
-
-  min-height:240px;
-}
-
-.skill-card:hover{
-  transform:translateY(-5px);
-
-  border-color:rgba(0,255,136,.25);
-
-  background:#101010;
-}
-
-.skill-card h3{
-  color:var(--text);
-
-  font-size:22px;
-  line-height:1.4;
-
-  margin-bottom:14px;
-
-  font-weight:700;
-}
-
-.skill-card p{
-  line-height:1.8;
-  color:#b6b6b6;
-  font-size:15px;
-}
-
-.project-date{
-  color:var(--accent);
-  font-size:13px;
-  font-weight:600;
-  letter-spacing:.5px;
-  margin-bottom:18px;
-  text-transform:uppercase;
-}
-
-/* Contact */
-
-.contact-grid{
-  display:grid;
-  gap:18px;
-}
-
-.contact-item{
-  background:#0b0b0b;
-
-  border:1px solid var(--border);
-
-  border-radius:18px;
-
-  padding:24px;
-}
-
-.contact-item strong{
-  display:block;
-  margin-bottom:10px;
-}
-
-.contact-item a{
-  color:var(--accent);
-  text-decoration:none;
-}
-
-/* Footer */
-
-footer{
-  padding:45px 20px;
-  text-align:center;
-
-  border-top:1px solid #111;
-}
-
-footer p{
-  color:#d4d4d4;
-  margin-bottom:8px;
-}
-
-footer span{
-  color:#666;
-  font-size:14px;
-}
-
-/* Mobile */
-
-@media(max-width:900px){
-
-  .hero-container{
-    grid-template-columns:1fr;
-    gap:50px;
-  }
-
-  .hero h1{
-    font-size:46px;
-  }
-
-  .nav-links{
-    display:none;
-  }
-
-  .section-title{
-    font-size:36px;
-  }
-
-  .skills-grid{
-    grid-template-columns:1fr;
-  }
-
-}
-
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adithyan.V — Cybersecurity Portfolio</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #090a0f;
+            --surface: #111318;
+            --surface-hover: #161922;
+            --border: #1e222d;
+            --border-accent: #2d3446;
+            
+            --accent: #10b981; /* Professional Emerald Green */
+            --accent-dim: rgba(16, 185, 129, 0.1);
+            
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --text-subtle: #6b7280;
+            
+            --font-sans: 'Plus Jakarta Sans', -apple-system, sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--bg);
+            color: var(--text-main);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Container Layout */
+        .container {
+            max-width: 1080px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Subtle Background Grid */
+        .bg-grid {
+            position: fixed;
+            inset: 0;
+            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 40px 40px;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* Minimal Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(9, 10, 15, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            z-index: 100;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        /* Scaled up Logo Size */
+        .logo {
+            font-weight: 800;
+            font-size: 20px; /* Increased Size */
+            letter-spacing: -0.5px;
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-dot {
+            width: 10px;
+            height: 10px;
+            background: var(--accent);
+            border-radius: 50%;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-main);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 160px 0 100px;
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 14px;
+            border-radius: 20px;
+            background: var(--accent-dim);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            color: var(--accent);
+            font-size: 13px;
+            font-weight: 500;
+            font-family: var(--font-mono);
+            margin-bottom: 24px;
+        }
+
+        .status-badge::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: var(--accent);
+            border-radius: 50%;
+        }
+
+        .hero h1 {
+            font-size: clamp(40px, 6vw, 64px);
+            font-weight: 700;
+            letter-spacing: -1.5px;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .hero h2 {
+            font-size: clamp(18px, 3vw, 22px);
+            color: var(--text-muted);
+            font-weight: 400;
+            max-width: 680px;
+            margin-bottom: 32px;
+            line-height: 1.5;
+        }
+
+        .hero-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 40px;
+        }
+
+        .hero-tag {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--text-muted);
+            background: var(--surface);
+            border: 1px solid var(--border);
+            padding: 6px 12px;
+            border-radius: 6px;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--text-main);
+            color: var(--bg);
+        }
+
+        .btn-primary:hover {
+            background: #ffffff;
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background: var(--surface);
+            color: var(--text-main);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            background: var(--surface-hover);
+            border-color: var(--border-accent);
+        }
+
+        /* Section Layouts */
+        section {
+            padding: 80px 0;
+            border-top: 1px solid var(--border);
+        }
+
+        .section-header {
+            margin-bottom: 48px;
+        }
+
+        .section-title {
+            font-size: 24px;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+            margin-bottom: 8px;
+        }
+
+        .section-subtitle {
+            color: var(--text-muted);
+            font-size: 15px;
+        }
+
+        /* About Grid & Disclosures */
+        .about-box {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 32px;
+            font-size: 16px;
+            color: var(--text-muted);
+            line-height: 1.8;
+            margin-bottom: 24px;
+        }
+
+        .disclosure-card {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.05) 0%, var(--surface) 100%);
+            border: 1px solid rgba(16, 185, 129, 0.25);
+            border-radius: 12px;
+            padding: 24px 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .disclosure-info h4 {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-main);
+            margin-bottom: 4px;
+        }
+
+        .disclosure-info p {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        .disclosure-tag {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--accent);
+            background: var(--accent-dim);
+            padding: 4px 10px;
+            border-radius: 4px;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            white-space: nowrap;
+        }
+
+        /* Card Grids */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 20px;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        /* Minimal Card Component */
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 28px;
+            transition: all 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card:hover {
+            border-color: var(--border-accent);
+            background: var(--surface-hover);
+        }
+
+        .card-meta {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--accent);
+            margin-bottom: 8px;
+        }
+
+        .card-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-main);
+            margin-bottom: 8px;
+        }
+
+        .card-desc {
+            font-size: 14px;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* Project Links */
+        .card-links {
+            display: flex;
+            gap: 16px;
+            margin-top: 20px;
+            padding-top: 16px;
+            border-top: 1px solid var(--border);
+        }
+
+        .card-link {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--text-muted);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            transition: color 0.2s ease;
+        }
+
+        .card-link:hover {
+            color: var(--accent);
+        }
+
+        /* Contact Grid & Icons */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+        }
+
+        .contact-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .contact-card:hover {
+            border-color: var(--border-accent);
+            background: var(--surface-hover);
+        }
+
+        .contact-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .contact-label {
+            font-size: 12px;
+            color: var(--text-subtle);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .contact-icon {
+            width: 20px;
+            height: 20px;
+            fill: var(--text-muted);
+            transition: fill 0.2s ease;
+        }
+
+        .contact-card:hover .contact-icon {
+            fill: var(--accent);
+        }
+
+        .contact-value {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-main);
+            font-family: var(--font-mono);
+            word-break: break-all;
+        }
+
+        /* Resume Preview Modal */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .modal-container {
+            background: var(--surface);
+            border: 1px solid var(--border-accent);
+            border-radius: 12px;
+            max-width: 800px;
+            width: 100%;
+            max-height: 85vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+
+        .modal-header {
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 20px;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+
+        .modal-close:hover {
+            color: var(--text-main);
+        }
+
+        .modal-body {
+            padding: 24px;
+            overflow-y: auto;
+            font-family: var(--font-mono);
+            font-size: 13px;
+            line-height: 1.7;
+            color: var(--text-muted);
+            white-space: pre-wrap;
+            background: #0b0d13;
+        }
+
+        /* Footer */
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            font-size: 13px;
+            color: var(--text-subtle);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero {
+                padding: 120px 0 60px;
+            }
+
+            section {
+                padding: 60px 0;
+            }
+
+            .disclosure-card {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
 </head>
-
 <body>
 
-<!-- Loader -->
-
-<div id="loader">
-
-  <div class="loader-content">
-
-    <div class="loader-ring"></div>
-
-    <p>Loading Portfolio</p>
-
-  </div>
-
-</div>
-
-<!-- Header -->
-
-<header>
-
-<nav class="navbar">
-
-<div class="logo">
-
-<div class="logo-box"></div>
-
-<span>Adithyan.V</span>
-
-</div>
-
-<ul class="nav-links">
-
-<li><a href="#about">About</a></li>
-
-<li><a href="#skills">Skills</a></li>
-
-<li><a href="#projects">Projects</a></li>
-
-<li><a href="#certifications">Certifications</a></li>
-
-<li><a href="#contact">Contact</a></li>
-
-</ul>
-
-</nav>
-
-</header>
-
-<!-- Hero -->
-
-<section class="hero">
-
-<div class="hero-container">
-
-<div>
-
-<div class="badge">
-Cybersecurity Researcher
-</div>
-
-<h1>
-Adithyan<span>.V</span>
-</h1>
-
-<h2>
-Focused on Offensive Security, SOC Operations, and Web Application Security.
-</h2>
-
-<p>
-
-Cybersecurity researcher specializing in
-<span class="highlight">VAPT</span>,
-<span class="highlight">SOC Operations</span>,
-<span class="highlight">Threat Monitoring</span>,
-<span class="highlight">Web Security</span>,
-and
-<span class="highlight">Bug Bounty Hunting</span>.
-
-Focused on identifying vulnerabilities and improving security posture through practical security research and hands-on analysis.
-
-</p>
-
-<div class="tags">
-
-<div class="tag">VAPT</div>
-
-<div class="tag">SOC Operations</div>
-
-<div class="tag">Threat Monitoring</div>
-
-<div class="tag">Bug Hunting</div>
-
-<div class="tag">Web Security</div>
-
-<div class="tag">Packet Analysis</div>
-
-</div>
-
-<div class="buttons">
-
-<a href="#contact" class="btn primary">
-Contact Me
-</a>
-
-<a href="#projects" class="btn secondary">
-View Projects
-</a>
-
-</div>
-
-</div>
-
-<!-- Hero Card -->
-
-<div class="hero-card">
-
-<div class="stat">
-<p>Primary Focus</p>
-<h3>Offensive Security & Defensive Security</h3>
-</div>
-
-<div class="stat">
-<p>Specialization</p>
-<h3>VAPT • SOC • Threat Monitoring</h3>
-</div>
-
-<div class="stat">
-<p>Current Certification</p>
-<h3>CICSA — Red Team Hacker Academy</h3>
-</div>
-
-<div class="stat">
-<p>Career Goal</p>
-<h3>Penetration Tester / SOC Analyst</h3>
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- About -->
-
-<section id="about">
-
-<div class="container">
-
-<h2 class="section-title">
-About <span>Me</span>
-</h2>
-
-<p class="section-sub">
-Focused on offensive and defensive cybersecurity operations.
-</p>
-
-<div class="card">
-
-<p class="about-text">
-
-Cybersecurity researcher and BCA graduate focused on both offensive exploitation and defensive infrastructure monitoring. Brings hands-on experience in bug hunting (HackerOne, huntr) and real-world
-vulnerability research, with verified security disclosures to Kerala Government web infrastructure via CERT-In. Currently advancing defensive skills in SOC operations, incident response, and log analysis as a CICSA
-candidate at Red Team Hacker Academy. Alongside core VAPT and SOC capabilities, conducts threat intelligence analysis on the side to track emerging malware campaigns and threat actor tactics. Seeking a
-Cyber Security Analyst, VAPT, or SOC Analyst role to apply a full-lifecycle security approach within a dedicated team.
-  
-</p>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- Skills -->
-
-<section id="skills">
-
-<div class="container">
-
-<h2 class="section-title">
-Core <span>Skills</span>
-</h2>
-
-<div class="skills-grid">
-
-<div class="skill-card">
-<h3>Bug Hunting</h3>
-<p>Identifying and responsibly disclosing security vulnerabilities.</p>
-</div>
-
-<div class="skill-card">
-<h3>VAPT</h3>
-<p>Hands-on vulnerability assessment and penetration testing.</p>
-</div>
-
-<div class="skill-card">
-<h3>Log Analysis</h3>
-<p>Security log investigation and threat detection.</p>
-</div>
-
-<div class="skill-card">
-<h3>Packet Analysis</h3>
-<p>Analyzing network traffic and suspicious activity.</p>
-</div>
-
-<div class="skill-card">
-<h3>Web Security</h3>
-<p>Testing and securing modern web applications.</p>
-</div>
-
-<div class="skill-card">
-<h3>SOC Operations</h3>
-<p>Threat monitoring and incident investigation workflows.</p>
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- Projects -->
-
-<section id="projects">
-
-<div class="container">
-
-<h2 class="section-title">
-Selected <span>Projects</span>
-</h2>
-
-<p class="section-sub">
-Focused on cybersecurity, automation, and secure system design.
-</p>
-
-<div class="skills-grid">
-
-<div class="skill-card">
-
-<h3>
-XSS Detection Using Snort IDS
-</h3>
-
-<div class="project-date">
-2026
-</div>
-
-<p>
-Simulated and detected real-time Cross-Site Scripting (XSS) attacks by deploying an intentionally vulnerable Flask web application monitored by a Snort 3 IDS with custom inspection rules.
-</p>
-
-</div>
-
-<div class="skill-card">
-
-<h3>
-Secure Wireless Network Design
-</h3>
-
-<div class="project-date">
-Internship Project • 2025
-</div>
-
-<p>
-Designed and secured a wireless network infrastructure using WPA2 encryption, MAC filtering, and secure administrative configurations in Cisco Packet Tracer.
-</p>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- Certifications -->
-
-<section id="certifications">
-
-<div class="container">
-
-<h2 class="section-title">
-Education & <span>Certifications</span>
-</h2>
-
-<p class="section-sub">
-Academic background and cybersecurity training.
-</p>
-
-<div class="skills-grid">
-
-<div class="skill-card">
-
-<h3>
-CICSA Certification
-</h3>
-
-<p>
-Certified IT Infrastructure and Cyber SOC Analyst (In Progress)
-<br><br>
-Red Team Hacker Academy
-</p>
-
-</div>
-
-<div class="skill-card">
-
-<h3>
-BCA Cyber Security
-</h3>
-
-<p>
-Bachelor of Computer Application
-<br><br>
-2022 – 2025
-</p>
-
-</div>
-
-<div class="skill-card">
-
-<h3>
-Cloud & Cyber Security
-</h3>
-
-<p>
-Diploma in Cloud Computing & Cyber Security
-<br><br>
-2024 – 2025
-</p>
-
-</div>
-
-<div class="skill-card">
-
-<h3>
-Cisco Certifications
-</h3>
-
-<p>
-Introduction to Cyber Security
-<br><br>
-Cyber Security Essentials
-</p>
-
-</div>
-
-<div class="skill-card">
-
-<h3>
-Python Programming
-</h3>
-
-<p>
-Programming fundamentals and automation concepts for cybersecurity workflows.
-</p>
-
-</div>
-
-<div class="skill-card">
-
-<h3>
-Cyber Security with AI
-</h3>
-
-<p>
-Virtual internship program focused on cybersecurity concepts and AI integration.
-</p>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- Contact -->
-
- <section id="contact">
-
-
-<div class="container">
-
-
-<h2 class="section-title">
-
-Contact <span>Information</span>
-
-</h2>
-
-
-<div class="contact-grid">
-
-
-<div class="contact-item">
-
-
-<strong>Email</strong>
-
-
-<a href="mailto:adithyanv783@gmail.com">
-
-adithyanv783@gmail.com
-
-</a>
-
-
-</div>
-
-
-<div class="contact-item">
-
-
-<strong>LinkedIn</strong>
-
-
-<a href="https://www.linkedin.com/in/adithyan-v-" target="_blank">
-
-linkedin.com/in/adithyan-v-
-
-</a>
-
-
-</div>
-
-
-<div class="contact-item">
-
-
-<strong>TryHackMe</strong>
-
-
-<a href="https://tryhackme.com/p/adthynv" target="_blank">
-
-tryhackme.com/p/adthynv
-
-</a>
-
-
-</div>
-
-
-<div class="contact-item">
-
-
-<strong>GitHub</strong>
-
-
-<a href="https://github.com/adithyanjkr" target="_blank">
-
-github.com/adithyanjkr
-
-</a>
-
-
-</div>
-
-
-</div>
-
-
-</div>
-
-
-</section> 
-<!-- Footer -->
-
-<footer>
-
-<p>
-© 2026 Adithyan.V
-</p>
-
-<span>
-Cybersecurity Portfolio
-</span>
-
-</footer>
-
-<script>
-
-window.addEventListener("load", () => {
-
-  setTimeout(() => {
-
-    const loader = document.getElementById("loader");
-
-    loader.style.opacity = "0";
-
-    setTimeout(() => {
-
-      loader.style.display = "none";
-
-    }, 500);
-
-  }, 700);
-
-});
-
-</script>
-
+    <div class="bg-grid"></div>
+
+    <!-- Header Navigation -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <!-- Sized Up Brand Name -->
+                <a href="#" class="logo">
+                    <div class="logo-dot"></div>
+                    <span>Adithyan.V</span>
+                </a>
+                <ul class="nav-links">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#certifications">Education & Certs</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero" style="border-top: none;">
+            <div class="container">
+                <div class="status-badge">Available for Security Roles</div>
+                <h1>Offensive Security & SOC Operations</h1>
+                <h2>Specialized in Vulnerability Assessment, Threat Monitoring, and Web Security Research with a full-lifecycle defensive approach.</h2>
+                
+                <div class="hero-tags">
+                    <span class="hero-tag">VAPT</span>
+                    <span class="hero-tag">SOC Operations</span>
+                    <span class="hero-tag">Threat Intelligence</span>
+                    <span class="hero-tag">Bug Bounty</span>
+                    <span class="hero-tag">Web Security</span>
+                </div>
+
+                <div class="hero-cta">
+                    <!-- Download Resume Button (Triggers text file generation) -->
+                    <button id="downloadResumeBtn" class="btn btn-primary">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                        Download Resume
+                    </button>
+                    <!-- View Resume Button -->
+                    <button id="viewResumeBtn" class="btn btn-secondary">View Resume</button>
+                    <a href="#contact" class="btn btn-secondary">Get in Touch</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">About</h2>
+                    <p class="section-subtitle">Background & Technical Focus</p>
+                </div>
+                
+                <div class="about-box">
+                    Cybersecurity researcher and BCA graduate focused on offensive exploitation and defensive infrastructure monitoring. Brings hands-on experience in bug hunting (HackerOne, huntr) and real-world vulnerability research. Currently advancing defensive skills in SOC operations, incident response, and log analysis as a CICSA candidate at Red Team Hacker Academy. Seeking a Cyber Security Analyst, VAPT, or SOC Analyst role to apply practical security expertise.
+                </div>
+
+                <!-- Featured Disclosure Highlight -->
+                <div class="disclosure-card">
+                    <div class="disclosure-info">
+                        <h4>Verified Government Disclosure</h4>
+                        <p>Responsibly identified & reported security vulnerabilities in Kerala State Web Infrastructure.</p>
+                    </div>
+                    <span class="disclosure-tag">CERT-In Reported</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Core Skills -->
+        <section id="skills">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Core Competencies</h2>
+                    <p class="section-subtitle">Technical focus and specialized domains</p>
+                </div>
+                <div class="grid-3">
+                    <div class="card">
+                        <h3 class="card-title">VAPT</h3>
+                        <p class="card-desc">Comprehensive vulnerability assessment and penetration testing across infrastructure and web targets.</p>
+                    </div>
+                    <div class="card">
+                        <h3 class="card-title">SOC Operations</h3>
+                        <p class="card-desc">Log analysis, SIEM monitoring, threat detection, and structured incident investigation workflows.</p>
+                    </div>
+                    <div class="card">
+                        <h3 class="card-title">Bug Hunting</h3>
+                        <p class="card-desc">Active vulnerability research on platforms like HackerOne and huntr, adhering to responsible disclosure.</p>
+                    </div>
+                    <div class="card">
+                        <h3 class="card-title">Web Security</h3>
+                        <p class="card-desc">In-depth security analysis and mitigation strategies for modern web application vulnerabilities.</p>
+                    </div>
+                    <div class="card">
+                        <h3 class="card-title">Packet Analysis</h3>
+                        <p class="card-desc">Deep packet inspection and network traffic analysis to detect anomalous behaviors.</p>
+                    </div>
+                    <div class="card">
+                        <h3 class="card-title">Threat Monitoring</h3>
+                        <p class="card-desc">Analyzing malware trends, actor TTPs, and tracking emerging threat vectors.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects -->
+        <section id="projects">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Featured Projects</h2>
+                    <p class="section-subtitle">Practical security implementations and simulations</p>
+                </div>
+                <div class="grid-2">
+                    <!-- Project 1 -->
+                    <div class="card">
+                        <div>
+                            <div class="card-meta">2026 • IDS / Network Security</div>
+                            <h3 class="card-title">XSS Detection Using Snort IDS</h3>
+                            <p class="card-desc">Simulated and detected real-time Cross-Site Scripting (XSS) attacks by deploying an intentionally vulnerable Flask application monitored by a Snort 3 IDS with custom inspection rules.</p>
+                        </div>
+                        <div class="card-links">
+                            <a href="https://github.com/adithyanjkr/xss-snort3-detection" target="_blank" rel="noopener" class="card-link"><span>↗</span> View Repository</a>
+                        </div>
+                    </div>
+
+                    <!-- Project 2: Phishing Detection & Awareness -->
+                    <div class="card">
+                        <div>
+                            <div class="card-meta">2026 • Phishing / Threat Analysis</div>
+                            <h3 class="card-title">Phishing Detection & Awareness</h3>
+                            <p class="card-desc">Evaluating live email threat samples and executing MXToolbox header verifications to analyze malicious vectors and reinforce user security posture.</p>
+                        </div>
+                        <div class="card-links">
+                            <a href="https://github.com/adithyanjkr/phishing-analysis-defense" target="_blank" rel="noopener" class="card-link"><span>↗</span> View Repository</a>
+                        </div>
+                    </div>
+
+                    <!-- Project 3 -->
+                    <div class="card">
+                        <div>
+                            <div class="card-meta">2025 • Internship Project</div>
+                            <h3 class="card-title">Secure Wireless Network Design</h3>
+                            <p class="card-desc">Designed and secured a hardened wireless network infrastructure utilizing WPA2 Enterprise encryption, MAC filtering, and secure administration controls in Cisco Packet Tracer.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Certifications & Education -->
+        <section id="certifications">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Education & Certifications</h2>
+                    <p class="section-subtitle">Academic qualifications and specialized training</p>
+                </div>
+                <div class="grid-3">
+                    <div class="card">
+                        <div class="card-meta">In Progress</div>
+                        <h3 class="card-title">CICSA</h3>
+                        <p class="card-desc">Certified IT Infrastructure and Cyber SOC Analyst<br><em>Red Team Hacker Academy</em></p>
+                    </div>
+                    <div class="card">
+                        <div class="card-meta">2022 – 2025</div>
+                        <h3 class="card-title">BCA Cyber Security</h3>
+                        <p class="card-desc">Bachelor of Computer Applications focused on Core Computer Science & Security Principles.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-meta">2024 – 2025</div>
+                        <h3 class="card-title">Cloud & Cyber Security</h3>
+                        <p class="card-desc">Diploma focusing on modern Cloud Architecture Security & Cyber Risk Management.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-meta">Cisco Network Academy</div>
+                        <h3 class="card-title">Cisco Certifications</h3>
+                        <p class="card-desc">Completed Introduction to Cyber Security and Cyber Security Essentials programs.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-meta">Development</div>
+                        <h3 class="card-title">Python Automation</h3>
+                        <p class="card-desc">Scripting for cyber security workflows, network automation, and security tool design.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-meta">Virtual Internship</div>
+                        <h3 class="card-title">Cyber Security with AI</h3>
+                        <p class="card-desc">Specialized program exploring the integration of Artificial Intelligence in Threat Detection.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Get in Touch</h2>
+                    <p class="section-subtitle">Direct channels for professional communication</p>
+                </div>
+                <div class="contact-grid">
+                    <!-- Email Card -->
+                    <a href="mailto:adithyanv783@gmail.com" class="contact-card">
+                        <div class="contact-header">
+                            <span class="contact-label">Email</span>
+                            <svg class="contact-icon" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                        </div>
+                        <div class="contact-value">adithyanv783@gmail.com</div>
+                    </a>
+
+                    <!-- LinkedIn Card -->
+                    <a href="https://www.linkedin.com/in/adithyan-v-" target="_blank" rel="noopener" class="contact-card">
+                        <div class="contact-header">
+                            <span class="contact-label">LinkedIn</span>
+                            <svg class="contact-icon" viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+                        </div>
+                        <div class="contact-value">adithyan-v-</div>
+                    </a>
+
+                    <!-- TryHackMe Card -->
+                    <a href="https://tryhackme.com/p/adthynv" target="_blank" rel="noopener" class="contact-card">
+                        <div class="contact-header">
+                            <span class="contact-label">TryHackMe</span>
+                            <svg class="contact-icon" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                        </div>
+                        <div class="contact-value">adthynv</div>
+                    </a>
+
+                    <!-- GitHub Card -->
+                    <a href="https://github.com/adithyanjkr" target="_blank" rel="noopener" class="contact-card">
+                        <div class="contact-header">
+                            <span class="contact-label">GitHub</span>
+                            <svg class="contact-icon" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.1-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"/></svg>
+                        </div>
+                        <div class="contact-value">adithyanjkr</div>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Resume Modal -->
+    <div id="resumeModal" class="modal-overlay">
+        <div class="modal-container">
+            <div class="modal-header">
+                <span class="modal-title">Adithyan_V_Resume.txt</span>
+                <button id="closeModalBtn" class="modal-close">&times;</button>
+            </div>
+            <div id="resumeModalContent" class="modal-body"></div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Adithyan.V — Cybersecurity Portfolio</p>
+        </div>
+    </footer>
+
+    <!-- Script to handle dynamic resume preview and download -->
+    <script>
+        const resumeText = `ADITHYAN V
+Vijaya Vilasam, Elamadu PO, Ayoor, Kollam, Kerala - 691533
++91 9778041634 | adithyanv783@gmail.com
+LinkedIn: linkedin.com/in/adithyan-v-/ | GitHub: github.com/adithyanjkr
+
+1. PROFESSIONAL SUMMARY
+Cybersecurity researcher and BCA graduate focused on both offensive exploitation and defensive infrastructure monitoring. Brings hands-on experience in bug hunting (HackerOne, huntr) and real-world vulnerability research, with verified security disclosures to Kerala Government web infrastructure via CERT-In. Currently advancing defensive skills in SOC operations, incident response, and log analysis as a CICSA candidate at Red Team Hacker Academy. Alongside core VAPT and SOC capabilities, conducts threat intelligence analysis on the side to track emerging malware campaigns and threat actor tactics. Seeking a Cyber Security Analyst, VAPT, or SOC Analyst role to apply a full-lifecycle security approach within a dedicated team.
+
+2. SKILLS
+• Cybersecurity: Offensive and Defensive Security, VAPT, Bug Hunting, Threat Intelligence, Incident Response, Log Analysis, Network Monitoring & Analysis (Wireshark, Cisco Packet Tracer).
+• Cisco Packet Tracer: Simulation and network design
+• Offensive Security Tools: Burp Suite Professional, Metasploit, SQLmap, Nmap, Gobuster, Hydra
+• Defensive Security Tools: Splunk, Wazuh, Snort, Wireshark
+• Programming & Web Tech: Python (Basic), HTML, CSS, PHP, MySQL
+• Environments & Virtualization: Kali Linux, Windows, Ubuntu, VMware, VirtualBox
+• Vulnerability Research: Independent Security Researcher with reported vulnerabilities in Kerala Government web infrastructure via CERT-In (Case IDs assigned). Active contributor to major bug bounty platforms.
+• CTF & Lab-Based Learning: Extensive experience in privilege escalation, network enumeration, and web testing through TryHackMe, HackTheBox, and PortSwigger Academy.
+
+3. EDUCATION
+• Certified IT Infrastructure and Cyber SOC Analyst (CICSA) - In Progress
+  Red Team Hacker Academy, Trivandrum
+• Diploma in Cloud Computing & Cyber Security (Add-On) (Apr 2024 - Apr 2025)
+  GITH Global India Techno Hub, Ernakulam
+• Bachelor of Computer Application (2022 - 2025)
+  Indira Gandhi College Of Arts And Science, Ernakulam
+
+4. PROJECTS
+• XSS Detection Using Snort IDS (2026)
+  Simulates and detects Cross-Site Scripting (XSS) attacks in real time using a Flask web application monitored continuously by Snort 3 engine.
+• Phishing Detection & Awareness (2026)
+  Evaluating live email threat samples and executing MXToolbox header verifications to analyze malicious vectors and reinforce user security posture.
+• Secure Wireless Network Design - Internship Project (2025)
+  Designed and configured a secure wireless network with static WAN IP, WPA2 encryption, MAC filtering, and administrative controls in Cisco Packet Tracer.
+• TransumDocs (Jan 2025 - Mar 2025)
+  Document processing system integrating PDF summarization, image-to-text translation, and PDF-to-text conversion built with Python & HTML.
+• Smart-Bite (Jun 2024 - Nov 2024)
+  PHP-MySQL web-based canteen automation system for menu management, order tracking, inventory control, and secure user authentication.
+
+5. INTERNSHIP
+• Cybersecurity with AI - Virtual Internship (NIIT Foundation & Cisco Networking Academy - 2025)
+  Completed virtual internship focused on cybersecurity fundamentals, threat detection, and secure network architecture. Simulated enterprise network with VLAN segmentation & ACLs.
+
+6. CERTIFICATES
+• Advanced Diploma in Cyber Security and Cloud Computing - STED Council / Skill Development Council Canada
+• Cyber Security Analyst Intern (Virtual Internship) & Letter of Recommendation - Zorvyn
+• Cyber Security with AI (Virtual Internship) - NIIT Foundation
+• Python Programming Certification`;
+
+        // Download functionality
+        document.getElementById('downloadResumeBtn').addEventListener('click', () => {
+            const blob = new Blob([resumeText], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'Adithyan_V_Resume.txt';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        });
+
+        // View Modal functionality
+        const modal = document.getElementById('resumeModal');
+        const modalContent = document.getElementById('resumeModalContent');
+        
+        document.getElementById('viewResumeBtn').addEventListener('click', () => {
+            modalContent.textContent = resumeText;
+            modal.style.display = 'flex';
+        });
+
+        document.getElementById('closeModalBtn').addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+    </script>
 </body>
 </html>
