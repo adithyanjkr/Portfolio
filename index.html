@@ -88,7 +88,7 @@
         /* Scaled up Logo Size */
         .logo {
             font-weight: 800;
-            font-size: 20px; /* Increased Size */
+            font-size: 20px;
             letter-spacing: -0.5px;
             color: var(--text-main);
             text-decoration: none;
@@ -203,16 +203,6 @@
             transition: all 0.2s ease;
             cursor: pointer;
             border: none;
-        }
-
-        .btn-primary {
-            background: var(--text-main);
-            color: var(--bg);
-        }
-
-        .btn-primary:hover {
-            background: #ffffff;
-            transform: translateY(-1px);
         }
 
         .btn-secondary {
@@ -425,70 +415,6 @@
             word-break: break-all;
         }
 
-        /* Resume Preview Modal */
-        .modal-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(8px);
-            z-index: 1000;
-            display: none;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
-
-        .modal-container {
-            background: var(--surface);
-            border: 1px solid var(--border-accent);
-            border-radius: 12px;
-            max-width: 800px;
-            width: 100%;
-            max-height: 85vh;
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-        }
-
-        .modal-header {
-            padding: 20px 24px;
-            border-bottom: 1px solid var(--border);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .modal-title {
-            font-size: 16px;
-            font-weight: 600;
-            color: var(--text-main);
-        }
-
-        .modal-close {
-            background: none;
-            border: none;
-            color: var(--text-muted);
-            font-size: 20px;
-            cursor: pointer;
-            transition: color 0.2s ease;
-        }
-
-        .modal-close:hover {
-            color: var(--text-main);
-        }
-
-        .modal-body {
-            padding: 24px;
-            overflow-y: auto;
-            font-family: var(--font-mono);
-            font-size: 13px;
-            line-height: 1.7;
-            color: var(--text-muted);
-            white-space: pre-wrap;
-            background: #0b0d13;
-        }
-
         /* Footer */
         footer {
             padding: 40px 0;
@@ -559,7 +485,7 @@
                     <span class="hero-tag">Web Security</span>
                 </div>
 
-                <div class="hero-cta">                  
+                <div class="hero-cta">
                     <a href="#contact" class="btn btn-secondary">Get in Touch</a>
                 </div>
             </div>
@@ -758,15 +684,12 @@
         </section>
     </main>
 
-    <!-- Resume Modal -->
-    <div id="resumeModal" class="modal-overlay">
-        <div class="modal-container">
-            <div class="modal-header">
-                <span class="modal-title">Adithyan_V_Resume.txt</span>
-                <button id="closeModalBtn" class="modal-close">&times;</button>
-            </div>
-            <div id="resumeModalContent" class="modal-body"></div>
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Adithyan.V — Cybersecurity Portfolio</p>
         </div>
-    </div>
+    </footer>
+
 </body>
 </html>
