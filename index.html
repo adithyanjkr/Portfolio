@@ -8,7 +8,7 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
     <style>
         :root {
@@ -48,22 +48,158 @@
             -webkit-font-smoothing: antialiased;
         }
 
+        /* Scroll Progress Bar */
+        .scroll-progress-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: transparent;
+            z-index: 101;
+        }
+
+        .scroll-progress-bar {
+            height: 100%;
+            background: var(--accent);
+            width: 0%;
+            box-shadow: 0 0 10px var(--accent);
+            transition: width 0.1s ease-out;
+        }
+
+        /* Scroll To Top Button */
+        .scroll-top-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 44px;
+            height: 44px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            color: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            z-index: 99;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+            text-decoration: none;
+        }
+
+        .scroll-top-btn.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top-btn:hover {
+            background: var(--surface-hover);
+            border-color: var(--accent);
+            transform: translateY(-4px) scale(1.1);
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.2);
+        }
+
         /* Container Layout */
         .container {
             max-width: 1080px;
             margin: 0 auto;
             padding: 0 24px;
+            position: relative;
+            z-index: 2;
         }
 
-        /* Subtle Background Grid */
-        .bg-grid {
+        /* Premium Cybersecurity Animated Background Framework */
+        .cyber-bg-layer {
             position: fixed;
             inset: 0;
-            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-                              linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-            background-size: 40px 40px;
             pointer-events: none;
-            z-index: -1;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        /* Visible Grid */
+        .bg-grid {
+            position: absolute;
+            inset: 0;
+            background-image: linear-gradient(to right, rgba(16, 185, 129, 0.07) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(16, 185, 129, 0.07) 1px, transparent 1px);
+            background-size: 50px 50px;
+            transform: perspective(1000px) rotateX(60deg) translateY(-100px) scale(2);
+            animation: gridMove 20s linear infinite;
+            opacity: 0.8;
+        }
+
+        @keyframes gridMove {
+            0% { background-position: 0 0; }
+            100% { background-position: 0 50px; }
+        }
+
+        /* Soft Scanlines */
+        .scanlines {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%);
+            background-size: 100% 4px;
+            z-index: 3;
+            opacity: 0.3;
+        }
+
+        /* Faint Binary & Terminal Code Streams */
+        .code-stream {
+            position: absolute;
+            top: -100px;
+            font-family: var(--font-mono);
+            font-size: 11px;
+            color: var(--accent);
+            opacity: 0.08;
+            white-space: nowrap;
+            animation: codeFall linear infinite;
+        }
+
+        @keyframes codeFall {
+            0% { transform: translateY(-100px); }
+            100% { transform: translateY(110vh); }
+        }
+
+        /* Floating Network Nodes Canvas */
+        #node-canvas {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.4;
+        }
+
+        /* Slow Radar Sweep Effect */
+        .radar-sweep {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 600px;
+            height: 600px;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            pointer-events: none;
+            opacity: 0;
+            animation: radarPulse 25s ease-in-out infinite;
+        }
+
+        @keyframes radarPulse {
+            0%, 90% { opacity: 0; transform: translate(-50%, -50%) scale(0.2); }
+            92% { opacity: 0.07; }
+            100% { opacity: 0; transform: translate(-50%, -50%) scale(2.2); }
+        }
+
+        .radar-sweep::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            border: 1px solid var(--accent);
+            box-shadow: 0 0 20px rgba(16, 185, 129, 0.2);
         }
 
         /* Minimal Header */
@@ -85,7 +221,7 @@
             height: 70px;
         }
 
-        /* 1. ADITHYAN.V LOGO - Bulging animation on hover */
+        /* Logo */
         .logo {
             font-weight: 800;
             font-size: 20px;
@@ -107,6 +243,7 @@
             height: 10px;
             background: var(--accent);
             border-radius: 50%;
+            box-shadow: 0 0 8px var(--accent);
         }
 
         .nav-links {
@@ -132,7 +269,6 @@
             padding: 160px 0 100px;
         }
 
-        /* 2. AVAILABLE FOR SECURITY ROLES - Floating & Pulsing Animation */
         .status-badge {
             display: inline-flex;
             align-items: center;
@@ -209,7 +345,6 @@
             flex-wrap: wrap;
         }
 
-        /* 3. GET IN TOUCH BUTTON - Bulging / Hover Animation */
         .btn {
             display: inline-flex;
             align-items: center;
@@ -272,7 +407,7 @@
             margin-bottom: 24px;
         }
 
-        /* Static Disclosure Card */
+        /* Disclosure Card */
         .disclosure-card {
             background: linear-gradient(135deg, rgba(16, 185, 129, 0.05) 0%, var(--surface) 100%);
             border: 1px solid rgba(16, 185, 129, 0.25);
@@ -308,6 +443,34 @@
             white-space: nowrap;
         }
 
+        /* Quote Section */
+        .quote-section {
+            padding: 80px 0;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            text-align: center;
+            opacity: 0;
+            transform: translateY(15px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .quote-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .quote-text {
+            font-family: var(--font-sans);
+            font-size: clamp(18px, 2.5vw, 22px);
+            font-style: italic;
+            font-weight: 400;
+            color: var(--text-muted);
+            letter-spacing: -0.2px;
+            line-height: 1.5;
+            max-width: 720px;
+            margin: 0 auto;
+        }
+
         /* Card Grids */
         .grid-2 {
             display: grid;
@@ -318,6 +481,38 @@
         .grid-3 {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        /* Side-by-Side Education & Certification Layout */
+        .split-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+        }
+
+        .split-column-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-main);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .split-column-title::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+            box-shadow: 0 0 8px var(--accent);
+        }
+
+        .card-stack {
+            display: flex;
+            flex-direction: column;
             gap: 20px;
         }
 
@@ -382,7 +577,7 @@
             color: var(--accent);
         }
 
-        /* Contact Section (GET IN TOUCH LAST) - Interactive Bulging Animation */
+        /* Contact Section */
         .contact-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -442,8 +637,7 @@
             color: var(--text-subtle);
         }
 
-        /* Responsive Design */
-        @media (max-width: 768px) {
+        @media (max-width: 850px) {
             .nav-links {
                 display: none;
             }
@@ -460,18 +654,56 @@
                 flex-direction: column;
                 align-items: flex-start;
             }
+
+            .split-layout {
+                grid-template-columns: 1fr;
+            }
         }
+        .finding-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 18px;
+}
+
+.finding-tag {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--text-muted);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 6px 12px;
+    border-radius: 6px;
+}
     </style>
 </head>
 <body>
 
-    <div class="bg-grid"></div>
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress-container">
+        <div class="scroll-progress-bar" id="scroll-progress"></div>
+    </div>
+
+    <!-- Scroll To Top Button -->
+    <a href="#" class="scroll-top-btn" id="scroll-top-btn" title="Scroll to top">↑</a>
+
+    <!-- Premium Cybersecurity Animated Background Framework -->
+    <div class="cyber-bg-layer" id="parallax-bg">
+        <div class="bg-grid"></div>
+        <div class="scanlines"></div>
+        <canvas id="node-canvas"></canvas>
+        <div class="radar-sweep"></div>
+        <div class="code-stream" style="left: 10%; animation-duration: 12s; animation-delay: 0s;">01100010 01110101 01100111</div>
+        <div class="code-stream" style="left: 30%; animation-duration: 16s; animation-delay: 3s;">nmap -sS -p- 192.168.1.1</div>
+        <div class="code-stream" style="left: 55%; animation-duration: 14s; animation-delay: 1s;">SELECT * FROM users WHERE id=1;</div>
+        <div class="code-stream" style="left: 75%; animation-duration: 18s; animation-delay: 5s;">[!] EXPLOIT SUCCESSFUL</div>
+        <div class="code-stream" style="left: 90%; animation-duration: 13s; animation-delay: 2s;">01010011 01001111 01000011</div>
+    </div>
 
     <!-- Header Navigation -->
     <header>
         <div class="container">
             <nav class="navbar">
-                <!-- Adithyan.V Logo (Bulging on Hover) -->
                 <a href="#" class="logo">
                     <div class="logo-dot"></div>
                     <span>Adithyan.V</span>
@@ -491,10 +723,9 @@
         <!-- Hero Section -->
         <section class="hero" style="border-top: none;">
             <div class="container">
-                <!-- Available for Security Roles (Floating/Pulsing Animation) -->
                 <div class="status-badge">Available for Security Roles</div>
                 
-                <h1>Offensive Security & SOC Operations</h1>
+                <h1>Offensive Security &amp; SOC Operations</h1>
                 <h2>Specialized in Vulnerability Assessment, Threat Monitoring, and Web Security Research with a full-lifecycle defensive approach.</h2>
                 
                 <div class="hero-tags">
@@ -506,7 +737,6 @@
                 </div>
 
                 <div class="hero-cta">
-                    <!-- Get in Touch Button (Bulging on Hover) -->
                     <a href="#contact" class="btn btn-secondary">Get in Touch</a>
                 </div>
             </div>
@@ -521,17 +751,37 @@
                 </div>
                 
                 <div class="about-box">
-                    Cybersecurity researcher and BCA graduate focused on offensive exploitation and defensive infrastructure monitoring. Brings hands-on experience in bug hunting (HackerOne, huntr) and real-world vulnerability research. Currently advancing defensive skills in SOC operations, incident response, and log analysis as a CICSA candidate at Red Team Hacker Academy. Seeking a Cyber Security Analyst, VAPT, or SOC Analyst role to apply practical security expertise.
+                    Cybersecurity researcher and BCA graduate focused on offensive exploitation and defensive infrastructure monitoring. Brings hands-on experience in bug hunting (HackerOne, huntr) and real-world vulnerability research. Completed the Certified IT Infrastructure and Cyber SOC Analyst (CICSA) course at RedTeam Hacker Academy, with practical experience in SOC operations, incident response, and log analysis. Seeking a Cyber Security Analyst, VAPT, or SOC Analyst role to apply practical security expertise.
                 </div>
 
                 <!-- Featured Disclosure Highlight -->
                 <div class="disclosure-card">
                     <div class="disclosure-info">
-                        <h4>Verified Government Disclosure</h4>
-                        <p>Responsibly identified & reported security vulnerabilities in Kerala State Web Infrastructure.</p>
-                    </div>
-                    <span class="disclosure-tag">CERT-In Reported</span>
+                        <h4>Verified Government Security Disclosure</h4>
+                            <p>
+                                Successfully identified and responsibly reported security vulnerabilities in
+                                <strong>Kerala State Government web infrastructure</strong> through
+                                <strong>CERT-In</strong>.
+                            </p>
+
+                            <div class="finding-tags">
+                                <span class="finding-tag">Exposed Configuration Files</span>
+                                <span class="finding-tag">Broken Access Control</span>
+                                <span class="finding-tag">End-of-Life Drupal Version</span>
+                            </div>
+                        </div>
+
+                    <span class="disclosure-tag">CERT-In Reported -> Resolved</span>
                 </div>
+            </div>
+        </section>
+
+        <!-- Quote Section -->
+        <section class="quote-section" id="quote-section" style="border-top: none;">
+            <div class="container">
+                <blockquote class="quote-text">
+                    "Think like an attacker. Defend like a guardian."
+                </blockquote>
             </div>
         </section>
 
@@ -615,43 +865,57 @@
             </div>
         </section>
 
-        <!-- Certifications & Education -->
+        <!-- Education & Certifications Section (Side-by-Side) -->
         <section id="certifications">
             <div class="container">
                 <div class="section-header">
                     <h2 class="section-title">Education & Certifications</h2>
-                    <p class="section-subtitle">Academic qualifications and specialized training</p>
+                    <p class="section-subtitle">Academic background and industry qualifications</p>
                 </div>
-                <div class="grid-3">
-                     <div class="card">
-                        <div class="card-meta">Certificate • 2026</div>
-                        <h3 class="card-title">CSA</h3>
-                        <p class="card-desc">Certified SOC Analyst v2 - EC-Council</p>
+                
+                <div class="split-layout">
+                    <!-- Left Column: Education -->
+                    <div>
+                        <h3 class="split-column-title">Education</h3>
+                        <div class="card-stack">
+                            <div class="card">
+                                <div class="card-meta">Certificate Course • 2026</div>
+                                <h3 class="card-title">CICSA</h3>
+                                <p class="card-desc">Certified IT Infrastructure and Cyber SOC Analyst - RedTeam Hacker Academy</p>
+                            </div>
+                            <div class="card">
+                                <div class="card-meta">Degree • 2022 – 2025</div>
+                                <h3 class="card-title">BCA</h3>
+                                <p class="card-desc">Bachelor of Computer Applications  - Indira Gandhi College of Arts & Science</p>
+                            </div>
+                            <div class="card">
+                                <div class="card-meta">Add-on Course • 2024 – 2025</div>
+                                <h3 class="card-title">Cyber Security & Cloud Computing</h3>
+                                <p class="card-desc">Focusing on Ethical Hacking and Cloud Architecture - Global India Techno Hub</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="card">
-                        <div class="card-meta">Certificate Course • 2026</div>
-                        <h3 class="card-title">CICSA</h3>
-                        <p class="card-desc">Certified IT Infrastructure and Cyber SOC Analyst - RedTeam Hacker Academy</p>
-                    </div>
-                    <div class="card">
-                        <div class="card-meta">Degree • 2022 – 2025</div>
-                        <h3 class="card-title">BCA</h3>
-                        <p class="card-desc">Bachelor of Computer Applications focused on Core Computer Science & Security Principles - Indira Gandhi College of Arts & Science</p>
-                    </div>
-                    <div class="card">
-                        <div class="card-meta">Add-on Course • 2024 – 2025</div>
-                        <h3 class="card-title">Cyber Security & Cloud Computing</h3>
-                        <p class="card-desc">Diploma focusing on Cyber Security, Ethical Hacking and Cloud Architecture - Global India Techno Hub</p>
-                    </div>
-                     <div class="card">
-                        <div class="card-meta">Virtual Internsip • 2026</div>
-                        <h3 class="card-title">Cyber Security Intern</h3>
-                        <p class="card-desc">Earned Certificate & LOR completing VAPT, API security, and phishing detection projects - Future Interns</p>
-                    </div>
-                    <div class="card">
-                        <div class="card-meta">Virtual Internship • 2025</div>
-                        <h3 class="card-title">Cyber Security with AI</h3>
-                        <p class="card-desc">Earned certifications in Introduction to Cyber Security and Cyber Security Essentials, with training in AI threat detection - NIIT Foundation & Cisco</p>
+
+                    <!-- Right Column: Certifications & Internships -->
+                    <div>
+                        <h3 class="split-column-title">Certifications & Experience</h3>
+                        <div class="card-stack">
+                            <div class="card">
+                                <div class="card-meta">2026</div>
+                                <h3 class="card-title">CSA v2</h3>
+                                <p class="card-desc">Certified SOC Analyst v2 - EC-Council</p>
+                            </div>
+                            <div class="card">
+                                <div class="card-meta">Virtual Internship • 2026</div>
+                                <h3 class="card-title">Cyber Security Intern</h3>
+                                <p class="card-desc">Earned Internship certificate & LOR - Future Interns</p>
+                            </div>
+                            <div class="card">
+                                <div class="card-meta">Virtual Internship • 2025</div>
+                                <h3 class="card-title">Cyber Security with AI</h3>
+                                <p class="card-desc">Earned Internship certificate & Cisco NetAcad cybersecurity certifications - NIIT Foundation & Cicso NetAcad </p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -662,7 +926,7 @@
             <div class="container">
                 <div class="section-header">
                     <h2 class="section-title">Get in Touch</h2>
-                    <p class="section-subtitle">Direct channels for professional communication</p>
+                    <p class="section-subtitle">Direct channels for communication</p>
                 </div>
                 <div class="contact-grid">
                     <!-- Email Card -->
@@ -716,5 +980,108 @@
         </div>
     </footer>
 
+    <!-- Interactive Scripts: Scroll Progress, Scroll to Top, Parallax, Nodes & Quote Animation -->
+    <script>
+        // Scroll Progress Bar & Scroll To Top Visibility
+        const progressBar = document.getElementById('scroll-progress');
+        const scrollTopBtn = document.getElementById('scroll-top-btn');
+
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            progressBar.style.width = scrollPercent + '%';
+
+            if (scrollTop > 400) {
+                scrollTopBtn.classList.add('visible');
+            } else {
+                scrollTopBtn.classList.remove('visible');
+            }
+        });
+
+        scrollTopBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Parallax Effect on Background
+        const parallaxBg = document.getElementById('parallax-bg');
+        window.addEventListener('scroll', () => {
+            const scrollY = window.scrollY;
+            parallaxBg.style.transform = `translateY(${scrollY * 0.15}px)`;
+        });
+
+        // Fade-in animation for Quote Section
+        const quoteSection = document.getElementById('quote-section');
+        if (quoteSection) {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.2 });
+
+            observer.observe(quoteSection);
+        }
+
+        // Floating Network Nodes Animation (Canvas 60 FPS)
+        const canvas = document.getElementById('node-canvas');
+        const ctx = canvas.getContext('2d');
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        const nodes = [];
+        const nodeCount = Math.floor(window.innerWidth * window.innerHeight / 25000);
+
+        for (let i = 0; i < (nodeCount < 25 ? 25 : nodeCount); i++) {
+            nodes.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                vx: (Math.random() - 0.5) * 0.6,
+                vy: (Math.random() - 0.5) * 0.6,
+                radius: Math.random() * 1.5 + 1
+            });
+        }
+
+        function animateNodes() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = 'rgba(16, 185, 129, 0.6)';
+            ctx.strokeStyle = 'rgba(16, 185, 129, 0.12)';
+            ctx.lineWidth = 1;
+
+            for (let i = 0; i < nodes.length; i++) {
+                let n = nodes[i];
+                n.x += n.vx;
+                n.y += n.vy;
+
+                if (n.x < 0 || n.x > canvas.width) n.vx *= -1;
+                if (n.y < 0 || n.y > canvas.height) n.vy *= -1;
+
+                ctx.beginPath();
+                ctx.arc(n.x, n.y, n.radius, 0, Math.PI * 2);
+                ctx.fill();
+
+                for (let j = i + 1; j < nodes.length; j++) {
+                    let n2 = nodes[j];
+                    let dist = Math.hypot(n.x - n2.x, n.y - n2.y);
+                    if (dist < 130) {
+                        ctx.beginPath();
+                        ctx.moveTo(n.x, n.y);
+                        ctx.lineTo(n2.x, n2.y);
+                        ctx.stroke();
+                    }
+                }
+            }
+            requestAnimationFrame(animateNodes);
+        }
+        animateNodes();
+    </script>
 </body>
 </html>
