@@ -159,88 +159,115 @@
             box-shadow: 0 0 12px var(--accent);
         }
 
-        .nav-links {
-            display: flex;
-            gap: 24px;
-            list-style: none;
-        }
+        /* 1. Hide inline desktop list */
+.nav-links {
+    display: none !important;
+}
 
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text-muted);
-            font-size: 13px;
-            font-weight: 500;
-            transition: all 0.2s ease;
-            position: relative;
-        }
+/* 2. Sleek Trigger Button with subtle glow */
+.mobile-menu-btn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 38px;
+    height: 38px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    cursor: pointer;
+    padding: 0;
+    z-index: 101;
+    transition: all 0.2s ease;
+}
 
-        .nav-links a:hover { color: var(--accent); }
+.mobile-menu-btn:hover {
+    border-color: var(--accent);
+    box-shadow: 0 0 10px var(--accent-glow);
+}
 
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 0%;
-            height: 2px;
-            background: var(--accent);
-            transition: width 0.2s ease;
-        }
+.mobile-menu-btn span {
+    display: block;
+    width: 18px;
+    height: 2px;
+    background: var(--text-main);
+    margin: 2.5px 0;
+    border-radius: 1px;
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease;
+}
 
-        .nav-links a:hover::after { width: 100%; }
+.mobile-menu-btn.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); background: var(--accent); }
+.mobile-menu-btn.active span:nth-child(2) { opacity: 0; }
+.mobile-menu-btn.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); background: var(--accent); }
 
-        .mobile-menu-btn {
-            display: none;
-            background: transparent;
-            border: none;
-            cursor: pointer;
-            padding: 8px;
-            z-index: 101;
-        }
+/* 3. Full-Width Header Drop-Tray */
+.mobile-nav {
+    position: fixed !important;
+    top: 72px !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: auto !important;
+    width: 100% !important;
+    max-height: calc(100vh - 72px);
+    overflow-y: auto;
+    background: rgba(15, 18, 25, 0.97) !important;
+    border-bottom: 0px solid var(--border-accent);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(4px);
+    box-shadow: 0 5px 50px rgba(0, 0, 0, 0.8);
+    z-index: 99;
+    padding: 22px calc((100vw - 1160px) / 2 + 24px); /* aligns directly with your container */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(-20px);
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease, visibility 0.25s;
+}
 
-        .mobile-menu-btn span {
-            display: block;
-            width: 22px;
-            height: 2px;
-            background: var(--text-main);
-            margin: 5px 0;
-            transition: transform 0.3s ease, opacity 0.3s ease;
-        }
+.mobile-nav.active {
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    transform: translateY(0) !important;
+}
 
-        .mobile-menu-btn.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-        .mobile-menu-btn.active span:nth-child(2) { opacity: 0; }
-        .mobile-menu-btn.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.mobile-nav a {
+    color: var(--text-muted);
+    font-size: 13.5px;
+    font-family: var(--font-mono);
+    text-decoration: none;
+    padding: 12px 14px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+}
 
-        .mobile-nav {
-            position: fixed;
-            inset: 0;
-            background: rgba(18, 21, 28, 0.98);
-            backdrop-filter: blur(20px);
-            z-index: 99;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            gap: 20px;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s ease;
-        }
+.mobile-nav a::before {
+    content: '//';
+    color: var(--accent);
+    font-size: 11px;
+}
 
-        .mobile-nav.active {
-            opacity: 1;
-            pointer-events: auto;
-        }
+.mobile-nav a:hover {
+    color: var(--text-main);
+    background: rgba(16, 185, 129, 0.08);
+    border-color: var(--border-accent);
+    transform: translateY(-2px);
+}
 
-        .mobile-nav a {
-            color: var(--text-main);
-            font-size: 18px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: color 0.2s ease;
-        }
-
-        .mobile-nav a:hover { color: var(--accent); }
+@media (max-width: 1200px) {
+    .mobile-nav {
+        padding: 20px 24px;
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    }
+}
 
         section {
             padding: 100px 0;
@@ -415,7 +442,7 @@
         .btn-secondary {
             background: var(--surface);
             color: var(--text-main);
-            border: px solid var(--border);
+            border: 1px solid var(--border);
             backdrop-filter: blur(10px);
         }
 
@@ -492,7 +519,6 @@
         }
 
         /* ABOUT */
-
         .about-layout {
             display: grid;
             grid-template-columns: minmax(320px, 0.85fr) minmax(0, 1.15fr);
@@ -551,7 +577,8 @@
             line-height: 1.9;
             max-width: 680px;
         }
-        /* ACHIEVEMENTS (HEADINGS + GREEN 01/ NUMBERS) */
+
+        /* ACHIEVEMENTS */
         .achievements-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -560,7 +587,7 @@
 
         .achievement-card {
             background: var(--surface);
-            border: px solid var(--border);
+            border: 1px solid var(--border);
             border-radius: 12px;
             padding: 28px;
             backdrop-filter: blur(10px);
@@ -607,7 +634,7 @@
             grid-template-columns: repeat(3, 1fr);
             gap: 1px;
             background: var(--border);
-            border: px solid var(--border);
+            border: 1px solid var(--border);
             border-radius: 12px;
             overflow: hidden;
             box-shadow: 0 16px 36px rgba(0, 0, 0, 0.3);
@@ -676,7 +703,7 @@
 
         .tools-card {
             background: var(--surface);
-            border: px solid var(--border);
+            border: 1px solid var(--border);
             border-radius: 12px;
             padding: 28px;
             backdrop-filter: blur(10px);
@@ -758,6 +785,15 @@
             position: relative;
         }
 
+        .project-img-wrapper::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(18, 21, 28, 0.6) 0%, rgba(18, 21, 28, 0.1) 35%, transparent 60%);
+            pointer-events: none;
+            z-index: 2;
+        }
+
         .project-img {
             width: 100%;
             height: 100%;
@@ -837,7 +873,7 @@
             margin-bottom: 24px;
             padding: 22px 26px;
             background: var(--surface);
-            border: px solid var(--border);
+            border: 1px solid var(--border);
             border-radius: 12px;
             backdrop-filter: blur(10px);
         }
@@ -920,54 +956,80 @@
             border: 1px solid var(--border);
         }
 
-        /* CERTIFICATIONS (WITH HOVER RESPONSE) */
+        /* CERTIFICATIONS (REVEAL ON HOVER) */
         .cert-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 280px));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 20px;
-            justify-content: start;
         }
 
         .cert-card {
-            background: transparent;
-            border: none;
-            outline: none;
-            box-shadow: none;
-            border-radius: 0;
+            position: relative;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 10px;
             overflow: hidden;
             cursor: pointer;
-            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.3s ease;
         }
 
         .cert-card:hover {
             transform: translateY(-4px);
+            border-color: var(--border-accent);
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.45);
         }
 
         .cert-img-slot {
             width: 100%;
             aspect-ratio: 16 / 10;
-            height: auto;
-            background: transparent;
+            position: relative;
+            overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 0;
+            background: #181d28;
         }
 
         .cert-img {
-            max-width: 100%;
-            max-height: 100%;
-            width: auto;
-            height: auto;
-            object-fit: contain;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
             display: block;
-            border-radius: 6px;
-            transition: transform 0.3s ease, filter 0.3s ease;
+            transition: transform 0.4s ease;
         }
 
         .cert-card:hover .cert-img {
-            transform: scale(1.03);
-            filter: brightness(1.05);
+            transform: scale(1.04);
+        }
+
+        .cert-hover-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(18, 21, 28, 0.95) 0%, rgba(18, 21, 28, 0.45) 30%, transparent 75%);
+            display: flex;
+            align-items: flex-end;
+            padding: 16px;
+            opacity: 0;
+            transform: translateY(8px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .cert-card:hover .cert-hover-overlay {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .cert-hover-title {
+            font-family: var(--font-display);
+            font-size: 14.5px;
+            font-weight: 600;
+            color: var(--text-main);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            width: 100%;
         }
 
         /* EXPERIENCE TIMELINE */
@@ -1037,7 +1099,7 @@
 
         .contact-card {
             background: var(--surface);
-            border: px solid var(--border);
+            border: 1px solid var(--border);
             border-radius: 10px;
             padding: 24px;
             text-decoration: none;
@@ -1099,7 +1161,7 @@
             .mobile-menu-btn { display: block; }
             section { padding: 80px 0; }
             .hero { padding: 130px 0 60px; }
-            .cert-grid { justify-content: center; }
+            .cert-grid { grid-template-columns: 1fr; }
             .strengths-matrix { grid-template-columns: 1fr; }
             .about-image { min-height: 300px; }
             .about-box { font-size: 15px; line-height: 1.8; }
@@ -1136,7 +1198,7 @@
                     <li><a href="#contact">Contact</a></li>
                 </ul>
 
-                <button class="mobile-menu-btn" id="mobile-toggle" aria-label="Toggle navigation">
+                <button class="mobile-menu-btn" id="mobile-toggle" aria-label="Toggle navigation" aria-expanded="false">
                     <span></span>
                     <span></span>
                     <span></span>
@@ -1173,15 +1235,21 @@
                         <div class="hero-tags">
                             <span class="hero-tag">VAPT</span>
                             <span class="hero-tag">SOC Operations</span>
-                            <span class="hero-tag">Threat Intelligence</span>
-                            <span class="hero-tag">Security Research</span>
-                            <span class="hero-tag">Web Security</span>
                             <span class="hero-tag">Networking</span>
+                            <span class="hero-tag">Linux & Systems</span>
                         </div>
 
                         <div class="btn-group">
                             <a href="#projects" class="btn btn-primary">Explore Work</a>
                             <a href="#contact" class="btn btn-secondary">Get in Touch</a>
+                            <a href="Adithyan_V-CV.pdf" download="Adithyan_V-CV.pdf" class="btn btn-secondary">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                    <polyline points="7 10 12 15 17 10"></polyline>
+                                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                                </svg>
+                                Download CV
+                            </a>
                         </div>
                     </div>
 
@@ -1229,7 +1297,6 @@
         <section id="about">
             <div class="container">
                 <div class="about-layout">
-
                     <div class="about-image">
                         <img src="images/about.jpg" alt="Cybersecurity workspace">
                     </div>
@@ -1244,7 +1311,6 @@
                             Cybersecurity Researcher and BCA graduate with a strong focus on offensive security, vulnerability research, and Security Operations. Experienced in penetration testing, red teaming, and identifying real-world security vulnerabilities, alongside practical exposure to SOC monitoring, threat detection, log analysis, SIEM technologies, and incident response. Leverages AI-assisted workflows to enhance security research and offensive testing. Driven by continuous learning and the practical application of both offensive and defensive cybersecurity techniques.
                         </div>
                     </div>
-
                 </div>
             </div>
         </section>
@@ -1426,6 +1492,7 @@
                             <span class="tool-pill">Dark Web OSINT</span>
                         </div>
                     </div>
+                    
                     <div class="tools-card">
                         <h3 class="tools-card-title">Malware Analysis</h3>
                         <div class="tool-pill-container">
@@ -1433,11 +1500,12 @@
                             <span class="tool-pill">MalwareBazaar</span>
                             <span class="tool-pill">Ghidra</span>
                             <span class="tool-pill">Exiftool</span>
-                            <span class="tool-pill">Detect It Easy</span>
+                            <span class="tool-pill">Reverse Engineering</span>
                             <span class="tool-pill">Binwalk</span>
                             <span class="tool-pill">objdump</span>
                         </div>
                     </div>
+
                     <div class="tools-card">
                         <h3 class="tools-card-title">Linux & Infrastructure</h3>
                         <div class="tool-pill-container">
@@ -1528,7 +1596,7 @@
                         </div>
                         <p class="pipeline-institution">RedTeam Hacker Academy</p>
                         <div class="pipeline-telemetry">
-                            <span class="telemetry-tag">SOC Operations</span>
+                            <span class="telemetry-tag">SOC Tier 1/2 Operations</span>
                             <span class="telemetry-tag">Ethical hacking &amp; VAPT</span>
                         </div>
                     </div>
@@ -1554,8 +1622,8 @@
                         </div>
                         <p class="pipeline-institution">Indira Gandhi College of Arts &amp; Science</p>
                         <div class="pipeline-telemetry">
-                            <span class="telemetry-tag">Networking</span>
-                            <span class="telemetry-tag">Computer Science</span>
+                            <span class="telemetry-tag">Networking Protocols</span>
+                            <span class="telemetry-tag">Operating System Architecture</span>
                         </div>
                     </div>
                 </div>
@@ -1573,17 +1641,27 @@
                     <div class="cert-card">
                         <div class="cert-img-slot">
                             <img src="certificates/csa.jpg" alt="EC-Council CSA Certification" class="cert-img">
+                            <div class="cert-hover-overlay">
+                                <span class="cert-hover-title">Certified SOC Analyst (CSA v2)</span>
+                            </div>
                         </div>
                     </div>
 
                     <div class="cert-card">
                         <div class="cert-img-slot">
                             <img src="certificates/cicsa.jpeg" alt="RedTeam Hacker Academy CICSA Certification" class="cert-img">
+                            <div class="cert-hover-overlay">
+                                <span class="cert-hover-title">CICSA v3</span>
+                            </div>
                         </div>
                     </div>
+
                     <div class="cert-card">
                         <div class="cert-img-slot">
                             <img src="certificates/python.jpg" alt="Python Programming Certification" class="cert-img">
+                            <div class="cert-hover-overlay">
+                                <span class="cert-hover-title">Python Programming</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1591,36 +1669,35 @@
         </section>
 
         <section id="experience">
-    <div class="container">
-        <div class="section-header">
-            <h2 class="section-title">Experience</h2>
-            <p class="section-subtitle">Practical industry engagements and roles</p>
-        </div>
-        
-        <div class="exp-timeline-wrapper">
-            <!-- Previous Internships in Matching Style -->
-            <div class="exp-entry">
-                <div class="exp-node"></div>
-                <div class="exp-date">May 2026</div>
-                <h3 class="exp-title">Cyber Security Intern</h3>
-                <p>Future Interns</p>
-                <p class="exp-desc">
-                    Completed a 1-month Cyber Security Internship with practical projects covering VAPT, API security validation, and email phishing detection systems.
-                </p>
-            </div>
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Experience</h2>
+                    <p class="section-subtitle">Practical industry engagements and roles</p>
+                </div>
+                
+                <div class="exp-timeline-wrapper">
+                    <div class="exp-entry">
+                        <div class="exp-node"></div>
+                        <div class="exp-date">May 2026</div>
+                        <h3 class="exp-title">Cyber Security Intern</h3>
+                        <p>Future Interns</p>
+                        <p class="exp-desc">
+                            Completed a 1-month Cyber Security Internship with practical projects covering VAPT, API security validation, and email phishing detection systems.
+                        </p>
+                    </div>
 
-            <div class="exp-entry">
-                <div class="exp-node"></div>
-                <div class="exp-date">August 2025</div>
-                <h3 class="exp-title">Cyber Security with AI Intern</h3>
-                <p>NIIT Foundation &amp; Cisco NetAcad</p>
-                <p class="exp-desc">
-                    Completed a 1-month Cyber Security Internship with hands-on Cisco enterprise network design, packet routing audits, and earned 3 Cisco certifications.
-                </p>
+                    <div class="exp-entry">
+                        <div class="exp-node"></div>
+                        <div class="exp-date">August 2025</div>
+                        <h3 class="exp-title">Cyber Security with AI Intern</h3>
+                        <p>NIIT Foundation &amp; Cisco NetAcad</p>
+                        <p class="exp-desc">
+                            Completed a 1-month Cyber Security Internship with hands-on Cisco enterprise network design, packet routing audits, and earned 3 Cisco certifications.
+                        </p>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-</section>
+        </section>
 
         <section id="contact">
             <div class="container">
@@ -1713,8 +1790,9 @@
 
         if (mobileToggle && mobileNav) {
             mobileToggle.addEventListener('click', () => {
-                mobileToggle.classList.toggle('active');
+                const isActive = mobileToggle.classList.toggle('active');
                 mobileNav.classList.toggle('active');
+                mobileToggle.setAttribute('aria-expanded', isActive ? 'true' : 'false');
             });
         }
 
@@ -1722,6 +1800,7 @@
             link.addEventListener('click', () => {
                 mobileToggle?.classList.remove('active');
                 mobileNav?.classList.remove('active');
+                mobileToggle?.setAttribute('aria-expanded', 'false');
             });
         });
 
