@@ -1,57 +1,10 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- Google Search Console Verification -->
-    <meta name="google-site-verification" content="2neCPyDGzH6Rh9CUDJKCuSQ-zfowhN7__vf3YM-GDPk" />
-
-    <!-- SEO -->
-    <title>Adithyan V (Adithyan JKR) | Cybersecurity Researcher</title>
-    <meta name="description" content="Official portfolio of Adithyan V (Adithyan JKR), a Cybersecurity Researcher focused on VAPT, Offensive Security, SOC Operations, Threat Intelligence, and Security Automation.">
-    <meta name="author" content="Adithyan V">
-    <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://adithyanjkr.github.io/Portfolio/">
-
-    <!-- Open Graph -->
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="Adithyan V (Adithyan JKR) | Cybersecurity Researcher">
-    <meta property="og:description" content="Cybersecurity researcher focused on VAPT, offensive security, SOC operations, threat intelligence and security automation.">
-    <meta property="og:url" content="https://adithyanv-portfolio.vercel.app/">
-    <meta property="og:site_name" content="Adithyan V - Cybersecurity Portfolio">
-
-    <!-- Twitter / X -->
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="Adithyan V (Adithyan JKR) | Cybersecurity Researcher">
-    <meta name="twitter:description" content="Cybersecurity researcher focused on VAPT, offensive security, SOC operations and security automation.">
-
-    <!-- Person Structured Data -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Adithyan V",
-      "alternateName": [
-        "Adithyan JKR",
-        "Adithyan.V"
-      ],
-      "url": "https://adithyanjkr.github.io/Portfolio/",
-      "jobTitle": "Cybersecurity Researcher",
-      "description": "Cybersecurity researcher focused on Vulnerability Assessment and Penetration Testing, offensive security, SOC operations, threat intelligence and security automation.",
-      "sameAs": [
-        "https://www.linkedin.com/in/adithyan-v-/",
-        "https://github.com/adithyanjkr",
-        "https://www.instagram.com/adithyan.jkr/",
-        "https://x.com/itsadithyanjkr",
-        "https://tryhackme.com/p/adthynv",
-        "https://hackerone.com/adthynv"
-      ]
-    }
-    </script>
-
-    <!-- Fonts -->
+    <title>Adithyan V — Cybersecurity Portfolio</title>
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
@@ -798,7 +751,7 @@
         /* PROJECTS */
         .grid-3 {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(4, 1fr); 
             gap: 24px;
         }
 
@@ -825,7 +778,7 @@
 
         .project-img-wrapper {
             width: 100%;
-            height: 190px;
+            height: 140px;
             overflow: hidden;
             border-bottom: 1px solid var(--border);
             background: #181d28;
@@ -851,7 +804,7 @@
         .project-card:hover .project-img { transform: scale(1.06); }
 
         .project-content {
-            padding: 28px;
+            padding: 20px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -881,8 +834,8 @@
         .card-links {
             display: flex;
             gap: 16px;
-            margin-top: 20px;
-            padding-top: 20px;
+            margin-top: 16px;
+            padding-top: 16px;
             border-top: 1px solid var(--border);
         }
 
@@ -1289,7 +1242,7 @@
                         <div class="btn-group">
                             <a href="#projects" class="btn btn-primary">Explore Work</a>
                             <a href="#contact" class="btn btn-secondary">Get in Touch</a>
-                            <a href="Adithyan_V-CV.pdf" download="Adithyan_V-CV.pdf" class="btn btn-secondary">
+                            <a href="Adithyan.V (CV).pdf" download="Adithyan.V (CV).pdf" class="btn btn-secondary">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
                                     <polyline points="7 10 12 15 17 10"></polyline>
@@ -1322,8 +1275,8 @@
 
                 <div class="stats-bar">
                     <div class="stat-card">
-                        <div class="stat-number">CERT-In</div>
-                        <div class="stat-label">Verified Disclosures</div>
+                        <div class="stat-number">40+</div>
+                        <div class="stat-label">Vulnerabilities Reported</div>
                     </div>
                     <div class="stat-card">
                         <div class="stat-number">Kali Linux</div>
@@ -1374,10 +1327,9 @@
                         <div class="achievement-top">
                             <span class="achievement-index">01/</span>
                         </div>
-                        <h3 class="achievement-card-title">Govt Infrastructure Disclosures</h3>
+                        <h3 class="achievement-card-title">40+ Vulnerabilities Reported</h3>
                         <p class="achievement-desc">
-                            Independently identified and responsibly disclosed security vulnerabilities in <strong>Kerala Government web infrastructure</strong> through <strong>CERT-In</strong>, with official Case IDs assigned.
-                        </p>
+                            Independently identified and responsibly disclosed 40+ vulnerabilities (low to high severity) across <strong>bug bounty platforms and direct email disclosures</strong>, including <strong>gov websites</strong>.
                     </div>
 
                     <div class="achievement-card">
@@ -1604,6 +1556,22 @@
                             </div>
                             <div class="card-links">
                                 <a href="https://github.com/adithyanjkr/xss-snort3-detection" target="_blank" rel="noopener" class="card-link"><span>↗</span> View Repository</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card project-card">
+                        <div class="project-img-wrapper">
+                            <img src="images/ailock.jpg" alt="AiLock-Ransomware-Threat-Intelligence" class="project-img">
+                        </div>
+                        <div class="project-content">
+                            <div>
+                                <div class="card-meta">2026 • Threat Intelligence / Dark Web</div>
+                                <h3 class="card-title">AiLock-Ransomware-Threat-Intelligence</h3>
+                                <p class="card-desc">Passive threat intelligence investigation of an AiLock ransomware leak site, documenting public claims without accessing victim data.</p>
+                            </div>
+                            <div class="card-links">
+                                <a href="https://github.com/adithyanjkr/AiLock-Ransomware-Threat-Intelligence" target="_blank" rel="noopener" class="card-link"><span>↗</span> View Repository</a>
                             </div>
                         </div>
                     </div>
@@ -1917,4 +1885,4 @@
         }
     </script>
 </body>
-</html>  
+</html>
