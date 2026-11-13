@@ -751,12 +751,28 @@
         /* PROJECTS */
 .grid-3 {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Changed from 4 to 3 columns */
-    gap: 44px;
+    grid-template-columns: 1fr; /* Default mobile view: 1 column */
+    gap: 24px;
     
     /* Added these to center the grid container on the page */
     max-width: 1400px; 
     margin: 0 auto; 
+}
+
+/* Tablet View: 2 columns */
+@media (min-width: 768px) {
+    .grid-3 {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 32px;
+    }
+}
+
+/* Desktop View: 3 columns */
+@media (min-width: 1024px) {
+    .grid-3 {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 44px;
+    }
 }
 
 .card {
@@ -769,6 +785,7 @@
     flex-direction: column;
     justify-content: space-between;
     backdrop-filter: blur(10px);
+    min-width: 0; /* Prevents content from breaking layout */
 }
 
 .card:hover {
